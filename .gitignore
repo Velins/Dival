@@ -1,4 +1,5 @@
 venv/ 
+.pylintrc
 __pycahe__/
 
 .vscode

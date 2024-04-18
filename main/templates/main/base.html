@@ -1,0 +1,183 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiVal - Головна сторінка</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static "assets/css/main.css" %}">
+    <link rel="icon" href="{%static "assets/img/favicon/favicon-32x32.png"%}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-xl-4 text-left d-none d-xl-block">
+                            <div class="header-top-menu">
+                                <a href="{% url "main:index" %}">Головна</a>
+                                <a href="{% url "main:about" %}">Про нас</a>
+                                <a id="footer">Контакти</a>
+                                <a href="#">Оплата і доставка</a>
+                                <a href="#">Гарантії</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 text-center">
+                            <div class="graphic">Графік роботи : 9:00 - 22:00</div>
+                        </div>
+                        <div class="col-xl-4 text-end d-none d-md-block">
+                            <div class="btn-group">
+                                <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-epanded="false">
+                                    UA
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="#" >ENG</a>
+                                    </li>
+                                </ul>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-middle">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-4">
+                            <a href="{% url "main:index" %}" class="header-logo">Di Val</a>
+                            <a href="tel:+380000000000" class="header-logo-phone">+ 380000000000</a>
+                        </div>               
+                        <div class="col-6 col-lg-4 order-lg-2 cart-buttons text-end">
+                            <a href="#" class="btn">
+                                <img src="{% static "assets/img/heart.svg" %}" width=30px>
+                                <span class="badge text-bg-danger"></span>
+                            </a>
+                            <a href="cart.html" class="btn">
+                                <img src="{% static "assets/img/cart.svg" %}" width=30px>
+                                <span class="badge text-bg-danger"></span>
+                              </a>
+                        </div>
+                        <div class="col-lg-4  order-lg-1 text-end">
+                            <form action="">
+                                <div class="input-group">
+                                    <nav class="navbar">
+                                        <div class="container-fluid">
+                                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                              </button>
+                                        </div>
+                                      </nav>
+                                    <input type="text" class="form-control" name="search" placeholder="Пошук..." aria-label="Recipient's username" aria-describedby="button-search">
+                                        <button class="btn btn-outline" type="submit" id="button-search">
+                                            <img src="{%static "assets/img/search.svg"%}" width=24px>
+                                        </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <nav class="navbar">
+                    <div class="container-fluid">
+                      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Навігаційне меню</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                              <a class="nav-link" aria-current="page" href="index.html">Головна</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Каталог
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">Шафи</a></li>
+                                  <li><a class="dropdown-item" href="#">Кухня</a></li>
+                                  <li><a class="dropdown-item" href="#">Вітальня</a></li>
+                                  <li><a class="dropdown-item" href="#">Ліжка</a></li>
+                                  <li><a class="dropdown-item" href="#">Комоди і тумби</a></li>
+                                </ul>
+                              </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url "main:about" %}">Про нас</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Контакти</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Оплата і доставка</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Гарантії</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                  <div class="header-catalog p-3">
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col"><a href="#">ШАФИ</a></div>
+                            <div class="col"><a href="#">КУХНЯ</a></div>
+                            <div class="col"><a href="#">ВІТАЛЬНЯ</a></div>
+                            <div class="col"><a href="#">ЛІЖКА</a></div>
+                            <div class="col"><a href="#">КОМОДИ І ТУМБИ</a></div>
+                        </div>
+                    </div>
+            </div>
+        </header>
+        <main class="main">
+          {% block content %}{% endblock content %}
+        </main>
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-3 col-3 col-12">
+              <h4>Інформація</h4>
+              <ul class="information">
+                <li><a href="">Доставка</a></li>
+                <li><a href="">Умови співпраці</a></li>
+              </ul>
+            </div>
+            <div class="col-xl-3 col-3 col-12">
+              <h4>Ми у соцмережах</h4>
+              <ul class="footer-icons">
+                <li><a href="https://www.instagram.com/_dival_/"><img src="{% static "assets/img/instagram.png" %}" alt=""></a></li>
+                <li><a href="https://www.facebook.com/people/Dival-%D0%9C%D0%B5%D0%B1%D0%BB%D0%B5%D0%B2%D0%B8%D0%B9-%D1%86%D0%B5%D0%BD%D1%82%D1%80/100063806185263/"><img src="{% static "assets/img/facebook.png" %}" alt="" srcset=""></a></li>
+              </ul>
+            </div>
+            <div class="col-xl-3 col-3 col-12">
+              <h4>Адреса</h4>
+              <ul>
+                <li><a href="https://goo.gl/maps/aRoA2X87iTd4JBVs9">м.Сарни, Рівненська обл., вул. Матросова 2</a></li>
+              </ul>
+            </div>
+            <div class="col-xl-3 col-3 col-12">
+              <h4>Контакти</h4>
+              <ul class="contacts">
+                <li><a href="tel:+00">+380000000000</a></li>
+                <li><a href="tel:+380000000000">+380000000000</a></li>
+              </ul>
+            </div>
+          </div>
+        <div class="copyright">© 2024 Мебельний магазин DiVal. Усі права захищено.</div>
+        </footer>
+    </div>
+    <button id="top">
+      <img src="{% static "assets/img/arrow-up.svg" %}" alt="">
+    </button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static "assets/js/main.js" %}"></script>
+</body>
+</html>
