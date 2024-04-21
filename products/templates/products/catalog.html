@@ -1,0 +1,290 @@
+{%extends "main/base.html"%}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="breadcrums">
+                <ul>
+                    <li><a href="{% url "main:index" %}">Головна</a></li>
+                    <li><span>Category name</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <div class="sidebar">
+
+        <button class="btn w-100 text-start collapse-filters-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseExample">
+          <img src="{% static "assets/img/filter.svg" %}" alt="filter" width="20px">Фільтри
+        </button>
+
+        <div class="collapse collapse-filters" id="collapseFilters">
+          <div class="filter-block">
+            <h5 class="section-title-filter"><span>Колір корпусу</span></h5>
+            <form action="">
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="black">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Чорний  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="white">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Білий  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="gray">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Сірий  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="brown">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Коричневий  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+            </form>
+          </div>
+          <div class="filter-block">
+            <h5 class="section-title-filter"><span>Матеріал корпусу</span></h5>
+            <form action="">
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="wood">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Дерево  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="Chipboard">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    ДСП  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="Chipboard2">
+                  <label class="form-check-label" for="flexCheckDefault">
+                  ЛДСП  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+            </form>
+          </div>
+          <div class="filter-block">
+            <h5 class="section-title-filter"><span>Стиль</span></h5>
+            <form action="">
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="loft">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Лофт  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="modern">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Модерн  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="minimalism">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Мінімалізм  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+              <div class="form-check d-flex justify-content-between">  
+                <div>
+                  <input class="form-check-input" type="checkbox" value="" id="Kid">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Дитячий  
+                  </label>
+                </div>
+                <span class="badge border rounded-0">0</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title-catalog"><span>Category Name</span></h2>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-12">
+          <select class="form-select">
+            <option value="1" selected>Від дешевих до дорогих</option>
+            <option value="2">Від дорогих до дешевих</option>
+            <option value="3">За назвою</option>
+            <option value="4">По рейтингу</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+          <div class="product-card">
+            <div class="product-card-offer">
+              <div class="offer-hit">ХІТ</div>
+            </div>
+            <div class="product-thumb">
+              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+            </div>
+            <div class="product-details">
+              <h4>
+                <a href="{% url "products:product" %}">Proddsdauct 1</a>
+              </h4>
+              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <div class="produc-bottom-details">
+                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-links">
+                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+          <div class="product-card">
+            <div class="product-card-offer">
+              <div class="offer-hit">ХІТ</div>
+            </div>
+            <div class="product-thumb">
+              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+            </div>
+            <div class="product-details">
+              <h4>
+                <a href="{% url "products:product" %}">Product 1</a>
+              </h4>
+              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <div class="produc-bottom-details">
+                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-links">
+                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+          <div class="product-card">
+            <div class="product-card-offer">
+              <div class="offer-hit">ХІТ</div>
+            </div>
+            <div class="product-thumb">
+              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+            </div>
+            <div class="product-details">
+              <h4>
+                <a href="{% url "products:product" %}">Product 1</a>
+              </h4>
+              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <div class="produc-bottom-details">
+                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-links">
+                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+          <div class="product-card">
+            <div class="product-card-offer">
+              <div class="offer-hit">ХІТ</div>
+            </div>
+            <div class="product-thumb">
+              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+            </div>
+            <div class="product-details">
+              <h4>
+                <a href="{% url "products:product" %}">Product 1</a>
+              </h4>
+              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <div class="produc-bottom-details">
+                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-links">
+                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+          <div class="product-card">
+            <div class="product-card-offer">
+              <div class="offer-hit">ХІТ</div>
+            </div>
+            <div class="product-thumb">
+              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+            </div>
+            <div class="product-details">
+              <h4>
+                <a href="{% url "products:product" %}">Product 1</a>
+              </h4>
+              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <div class="produc-bottom-details">
+                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-links">
+                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#"><<</a></li>
+              <li class="page-item active" ><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">5</a></li>
+              <li class="page-item"><a class="page-link" href="#">>></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

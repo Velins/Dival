@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $(window).scroll(function() {
-        if ($(this).scrollTop() > 900) {
+        if ($(this).scrollTop() > 1000) {
             $('#top').fadeIn(); // Показати кнопку з ефектом зникнення
         } else {
             $('#top').fadeOut(); // Приховати кнопку з ефектом зникнення

@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static "assets/css/main.css" %}">
-    <link rel="icon" href="{%static "assets/img/favicon/favicon-32x32.png"%}">
+    <link rel="icon" href="{%static "assets/img/favicon/favicon.ico"%}">
 </head>
 <body>
     <div class="wrapper">
@@ -62,6 +61,10 @@
                                 <img src="{% static "assets/img/cart.svg" %}" width=30px>
                                 <span class="badge text-bg-danger"></span>
                               </a>
+                            <a href="cart.html" class="btn">
+                                <img src="{% static "assets/img/user.svg" %}" width=30px>
+                                <span class="badge text-bg-danger"></span>
+                            </a>
                         </div>
                         <div class="col-lg-4  order-lg-1 text-end">
                             <form action="">
@@ -101,11 +104,11 @@
                                   Каталог
                                 </a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Шафи</a></li>
-                                  <li><a class="dropdown-item" href="#">Кухня</a></li>
-                                  <li><a class="dropdown-item" href="#">Вітальня</a></li>
-                                  <li><a class="dropdown-item" href="#">Ліжка</a></li>
-                                  <li><a class="dropdown-item" href="#">Комоди і тумби</a></li>
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Шафи</a></li>
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Кухня</a></li>
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Вітальня</a></li>
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Ліжка</a></li>
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Комоди і тумби</a></li>
                                 </ul>
                               </li>
                             <li class="nav-item">
@@ -128,17 +131,18 @@
                   <div class="header-catalog p-3">
                     <div class="container-fluid">
                         <div class="row text-center">
-                            <div class="col"><a href="#">ШАФИ</a></div>
-                            <div class="col"><a href="#">КУХНЯ</a></div>
-                            <div class="col"><a href="#">ВІТАЛЬНЯ</a></div>
-                            <div class="col"><a href="#">ЛІЖКА</a></div>
-                            <div class="col"><a href="#">КОМОДИ І ТУМБИ</a></div>
+                            <div class="col"><a href="{% url "products:index" %}">ШАФИ</a></div>
+                            <div class="col"><a href="{% url "products:index" %}">КУХНЯ</a></div>
+                            <div class="col"><a href="{% url "products:index" %}">ВІТАЛЬНЯ</a></div>
+                            <div class="col"><a href="{% url "products:index" %}">ЛІЖКА</a></div>
+                            <div class="col"><a href="{% url "products:index" %}">КОМОДИ І ТУМБИ</a></div>
                         </div>
                     </div>
             </div>
         </header>
         <main class="main">
-          {% block content %}{% endblock content %}
+          {% block content %}
+          {% endblock content %}
         </main>
         <footer class="footer">
           <div class="container-fluid">

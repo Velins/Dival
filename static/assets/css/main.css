@@ -50,6 +50,7 @@ img
     border: 2px solid;  
     border-color: var(--accent-color);
     box-shadow: none;
+    color: black;
 }
 
 .form-control::placeholder
@@ -251,6 +252,10 @@ img
 
 /* ====================== MAIN RULSE =====================*/
 /* ====================== CARUSEL RULSE =====================*/
+.carousel
+{
+    background-color: var(--bg-color);
+}
 
 .carousel .carousel-item
 {
@@ -296,7 +301,7 @@ img
 .product-card
 {
     transition: all .3s;
-    border: 1px solid var(--bg-color);
+    border: 2px solid var(--bg-g-color);
     border-radius: 5%;
     background-color: #fff;
     position: relative;
@@ -481,6 +486,225 @@ img
 }
 /* ====================== LOCATION RULSE =====================*/
 
+
+/* ====================== CATALOG RULSE =====================*/
+.breadcrums
+{
+    margin: 30px 0px 30px 0px;
+    background-color: var(--bg-g-color);
+    padding: 1rem;
+}
+
+.breadcrums ul
+{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrums a
+{
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all .5s;
+    margin-right: 1em;
+}
+
+.breadcrums a:hover
+{
+    color: var(--accent-color);
+}
+
+.breadcrums a::after
+{
+    content: "/";
+    padding-left: 0.5rem;
+    color: var(--text-color);
+}
+
+.sidebar
+{
+    width: 250px;
+    margin: 50px 100px 50px 100px;
+    white-space: nowrap;
+}
+
+.filter-block:not(:last-child)
+{
+    margin-bottom: 2rem;
+}
+
+.filter-block .form-check 
+{   
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-check-input[type="checkbox"]
+{
+    border-radius: 0;
+    border-color: var(--bg-g-color);
+}
+
+.section-title-filter
+{
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.filter-block .badge
+{
+    color: var(--accent-color);
+}
+
+.form-select
+{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: black;
+    width: 230px;
+    border: 2px solid;  
+    border-color: var(--accent-color);
+    box-shadow: none;
+}
+
+.form-select:focus
+{
+    border: 2px solid;  
+    border-color: var(--accent-color);
+    box-shadow: none;
+}
+
+.section-title-catalog
+{
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent-color);
+}
+
+
+.page-link
+{
+    color: var(--accent-color);
+}
+
+.page-link:hover
+{
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.active > .page-link, .page-link.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.page-link:focus
+{
+    
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
+.sidebar .collapse-filters-btn
+{
+
+    font-size: 20px;
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
+.sidebar .collapse-filters-btn img
+{
+    margin-right: 75px;
+}
+/* ====================== CATALOG RULSE =====================*/
+
+
+/* ====================== PRODUCT PAGE RULSE =====================*/
+.galery
+{
+    max-width: 100%;
+}
+.section-title-product-name
+{
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.product-content .input-group
+{
+    margin: 20px;
+    width: 300px;
+}
+
+.product-content .input-group input
+{
+    border-radius: 0%;
+}
+
+.product-content h1
+{
+    margin-left: 10px;
+    font-size: 35px;
+}
+
+.product-content .input-group .btn
+{
+    font-size: 20px;
+    border-radius: 0%;
+}
+
+.product-content .product-price
+{
+    margin: 30px;
+    font-size: 40px;
+}
+
+.product-content .product-price .currency
+{
+    font-size: 20px;
+}
+
+.product-content .card
+{
+    color: var(--text-color);
+    padding-left: 20px;
+    font-size: 20px;
+    border-color: var(--accent-color);
+}
+
+.product-content-p
+{
+    font-size: 20px;
+    margin: 30px;
+}
+
+.product-content .card li
+{
+
+    padding-top: 10px;
+    text-decoration: underline;
+    
+}
+
+.product-content .card h5
+{
+    font-weight: bold;
+    padding-top: 10px;
+    color: var(--text-color);
+}
+
+.product-content .card img
+{
+    margin-right: 30px;
+}
+
+/* ====================== PRODUCT PAGE RULSE =====================*/
+
+
 /* ====================== MAIN RULSE =====================*/
 
 /* ====================== FOOTER RULSE =====================*/
@@ -610,13 +834,6 @@ img
 }
 /* ====================== ABOUT-US RULSE =====================*/
 
-@media (max-width:1150px) {
-    .header-logo-phone
-    {
-        display: none;
-    }
-
-}
 
 @media (max-width:1500px)
 {
@@ -626,10 +843,46 @@ img
     }
 }
 
+@media (max-width:1150px) {
+    .header-logo-phone
+    {
+        display: none;
+    }
+
+}
+
+@media (max-width:1450px)
+{
+    .sidebar
+    {
+    margin-left: 10px;
+    }
+}
+
+@media (max-width:768px)
+{
+    .section-title-catalog
+    {
+        margin-left: 0px;
+    }
+
+    .form-select
+    {
+        margin-left: 20px;
+    }
+
+    .sidebar
+    {
+    width: 300px;
+    margin-left: 50px;
+    }
+}
+
 @media (max-width:1200px)
 {
     #top
     {
+        display: none;
         z-index: -1;
     }
     .footer ul
@@ -701,4 +954,17 @@ img
     {
         font-size: 12px;
     } 
+}
+
+@media only screen and (min-width:768px)
+{
+    .sidebar .collapse-filters
+    {
+        display: block;
+    }
+    .sidebar .collapse-filters-btn
+    {
+        display: none;
+    }
+
 }
