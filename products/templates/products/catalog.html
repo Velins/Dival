@@ -27,42 +27,17 @@
           <div class="filter-block">
             <h5 class="section-title-filter"><span>Колір корпусу</span></h5>
             <form action="">
+              {% for color in colors %}
               <div class="form-check d-flex justify-content-between">  
                 <div>
-                  <input class="form-check-input" type="checkbox" value="" id="black">
+                  <input class="form-check-input" type="checkbox" value="" id="{{color.name}}">
                   <label class="form-check-label" for="flexCheckDefault">
-                    Чорний  
+                    {{color.name}}  
                   </label>
                 </div>
                 <span class="badge border rounded-0">0</span>
               </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="white">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Білий  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="gray">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Сірий  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="brown">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Коричневий  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
+              {% endfor %}
             </form>
           </div>
           <div class="filter-block">
@@ -158,21 +133,22 @@
         </div>
       </div>
       <div class="row">
+        {% for product in  products%}
         <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
           <div class="product-card">
             <div class="product-card-offer">
-              <div class="offer-hit">ХІТ</div>
+              {% comment %} <div class="offer-hit">ХІТ</div> {% endcomment %}
             </div>
             <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
+              <a href="{% url "products:product" %}"><img src="{% static product.image %}"></a>
             </div>
             <div class="product-details">
               <h4>
-                <a href="{% url "products:product" %}">Proddsdauct 1</a>
+                <a href="{% url "products:product" %}">{{product.name}}</a>
               </h4>
-              <p class="product-excerpt">ibus recusandae nulla!</p>
+              <p class="product-excerpt">{{product.description}}</p>
               <div class="produc-bottom-details">
-                <div class="product-price">5 200<div class="currency">ГРН</div></div>
+                <div class="product-price">{{product.price}}<div class="currency">ГРН</div></div>
                 <div class="product-links">
                   <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
                 </div>
@@ -180,94 +156,7 @@
             </div>
           </div>
         </div> 
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-          <div class="product-card">
-            <div class="product-card-offer">
-              <div class="offer-hit">ХІТ</div>
-            </div>
-            <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
-            </div>
-            <div class="product-details">
-              <h4>
-                <a href="{% url "products:product" %}">Product 1</a>
-              </h4>
-              <p class="product-excerpt">ibus recusandae nulla!</p>
-              <div class="produc-bottom-details">
-                <div class="product-price">5 200<div class="currency">ГРН</div></div>
-                <div class="product-links">
-                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-          <div class="product-card">
-            <div class="product-card-offer">
-              <div class="offer-hit">ХІТ</div>
-            </div>
-            <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
-            </div>
-            <div class="product-details">
-              <h4>
-                <a href="{% url "products:product" %}">Product 1</a>
-              </h4>
-              <p class="product-excerpt">ibus recusandae nulla!</p>
-              <div class="produc-bottom-details">
-                <div class="product-price">5 200<div class="currency">ГРН</div></div>
-                <div class="product-links">
-                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-          <div class="product-card">
-            <div class="product-card-offer">
-              <div class="offer-hit">ХІТ</div>
-            </div>
-            <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
-            </div>
-            <div class="product-details">
-              <h4>
-                <a href="{% url "products:product" %}">Product 1</a>
-              </h4>
-              <p class="product-excerpt">ibus recusandae nulla!</p>
-              <div class="produc-bottom-details">
-                <div class="product-price">5 200<div class="currency">ГРН</div></div>
-                <div class="product-links">
-                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
-          <div class="product-card">
-            <div class="product-card-offer">
-              <div class="offer-hit">ХІТ</div>
-            </div>
-            <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
-            </div>
-            <div class="product-details">
-              <h4>
-                <a href="{% url "products:product" %}">Product 1</a>
-              </h4>
-              <p class="product-excerpt">ibus recusandae nulla!</p>
-              <div class="produc-bottom-details">
-                <div class="product-price">5 200<div class="currency">ГРН</div></div>
-                <div class="product-links">
-                  <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
+        {% endfor %}
       </div>
       <div class="row">
         <div class="col-12">

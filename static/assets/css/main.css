@@ -882,8 +882,8 @@ img
 {
     #top
     {
-        display: none;
-        z-index: -1;
+        bottom: 100px;
+        right: 50px;
     }
     .footer ul
     {
@@ -923,6 +923,16 @@ img
 
 @media (max-width:580px)
 {
+    .header-logo
+    {
+        font-size: 60px;
+    }
+
+    .header-middle .cart-buttons .btn
+    {
+        padding-left: 0px;
+    }
+    
     .header-catalog
     {
         font-size: 18px;

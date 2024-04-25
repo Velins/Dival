@@ -1,0 +1,50 @@
+[
+    {
+        "model": "products.category",
+        "pk": "C_00001",
+        "fields": {
+            "name": "�� ������",
+            "slug": "all"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": "C_00002",
+        "fields": {
+            "name": "����",
+            "slug": "shafi"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": "C_00003",
+        "fields": {
+            "name": "�����",
+            "slug": "kuhnya"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": "C_00004",
+        "fields": {
+            "name": "³������",
+            "slug": "vitalnya"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": "C_00005",
+        "fields": {
+            "name": "�������",
+            "slug": "lizhka"
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": "C_00006",
+        "fields": {
+            "name": "������ � �����",
+            "slug": "komodi-i-tumbi"
+        }
+    }
+]

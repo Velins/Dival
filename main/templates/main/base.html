@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DiVal - Головна сторінка</title>
+    <title>{{title}}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -48,7 +48,7 @@
             <div class="header-middle">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-6 col-md-4">
+                        <div class="col-6 col-lg-4">
                             <a href="{% url "main:index" %}" class="header-logo">Di Val</a>
                             <a href="tel:+380000000000" class="header-logo-phone">+ 380000000000</a>
                         </div>               
@@ -104,11 +104,9 @@
                                   Каталог
                                 </a>
                                 <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Шафи</a></li>
-                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Кухня</a></li>
-                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Вітальня</a></li>
-                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Ліжка</a></li>
-                                  <li><a class="dropdown-item" href="{% url "products:index" %}">Комоди і тумби</a></li>
+                                  {% for category in categories %}
+                                  <li><a class="dropdown-item" href="{% url "products:index" %}">{{category.name}}</a></li>
+                                  {% endfor %}
                                 </ul>
                               </li>
                             <li class="nav-item">
@@ -131,11 +129,9 @@
                   <div class="header-catalog p-3">
                     <div class="container-fluid">
                         <div class="row text-center">
-                            <div class="col"><a href="{% url "products:index" %}">ШАФИ</a></div>
-                            <div class="col"><a href="{% url "products:index" %}">КУХНЯ</a></div>
-                            <div class="col"><a href="{% url "products:index" %}">ВІТАЛЬНЯ</a></div>
-                            <div class="col"><a href="{% url "products:index" %}">ЛІЖКА</a></div>
-                            <div class="col"><a href="{% url "products:index" %}">КОМОДИ І ТУМБИ</a></div>
+                          {% for category in categories %}
+                            <div class="col"><a href="{% url "products:index" %}">{{category.name}}</a></div>
+                          {% endfor %}
                         </div>
                     </div>
             </div>

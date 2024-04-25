@@ -1,0 +1,53 @@
+[
+    {
+        "model": "products.products",
+        "pk": "P_00001",
+        "fields": {
+            "category": "C_00001",
+            "name": "����-���� MiroMark",
+            "slug": "shafa-kupe-miromark",
+            "color": "Color_1",
+            "material": "Material_2",
+            "style": "Style_1",
+            "description": "����-���� VIP-master � ��������� �� ���������� ����������\r\n\r\n������� �������: ���� 16 ��\r\n\r\n���� �������: ����������",
+            "image": "products_images/shafa1.jpg",
+            "price": "5300.00",
+            "discount": "0.00",
+            "quantity": 5
+        }
+    },
+    {
+        "model": "products.products",
+        "pk": "P_00002",
+        "fields": {
+            "category": "C_00002",
+            "name": "����-���� MiroMark��2",
+            "slug": "shafa-kupe-miromarkmb2",
+            "color": "Color_2",
+            "material": "Material_1",
+            "style": "Style_2",
+            "description": "����-���� MiroMark 2-������ � ���������� ����������\r\n\r\n������� �������: ��� \r\n\r\n���� �������: ������",
+            "image": "",
+            "price": "4330.00",
+            "discount": "0.00",
+            "quantity": 10
+        }
+    },
+    {
+        "model": "products.products",
+        "pk": "P_00003",
+        "fields": {
+            "category": "C_00005",
+            "name": "����-���� VMV",
+            "slug": "shafa-kupe-vmv",
+            "color": "Color_3",
+            "material": "Material_3",
+            "style": "Style_3",
+            "description": "����-���� VMV 2-������ � �������� ���������� ����������\r\n\r\n������� �������: ���� \r\n\r\n���� �������: ѳ���",
+            "image": "products_images/shafa3.jpg",
+            "price": "7900.00",
+            "discount": "0.00",
+            "quantity": 2
+        }
+    }
+]
