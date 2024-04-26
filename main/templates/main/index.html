@@ -1,5 +1,18 @@
 {% extends "main/base.html" %}
 {% load static %}
+{% load product_tags %}
+            {% block head_catalog %}
+            <div class="header-catalog p-3">
+              <div class="container-fluid">
+                  <div class="row text-center">
+                    {% tag_category as categories %}
+                    {% for category in categories %}
+                      <div class="col"><a href="{% url "products:index" %}">{{category.name}}</a></div>
+                    {% endfor %}
+                  </div>
+              </div>
+            </div>
+            {% endblock%}
             {% block content %}
             <div id="carousel" class="carousel carousel-dark carousel-fade">
                 <div class="carousel-indicators">

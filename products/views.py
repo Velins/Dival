@@ -1,33 +1,16 @@
 from django.shortcuts import render
 
-from products.models import Material, Style, Color
+from products.models import Material, Style, Color, Products
 
 def catalog(request):
 
     color = Color.objects.all()
 
+    product = Products.objects.all()
+
     context ={
         'title' : 'DiVal - Каталог',
-        'products' :[
-            {
-                'image' : 'assets/img/products/shafa1.jpg',
-                'name' : 'Шафа-купе MiroMark',
-                'description' : 'Шафа-купе VIP-master з поличками та роздвіжними дверцятами',
-                'price' : '5 300.00'
-            },
-            {
-                'image' : 'assets/img/products/shafa2.jpg',
-                'name' : 'Шафа-купе MiroMarkМВ2',
-                'description' : 'Шафа-купе MiroMark 2-дверна з роздвіжними дверцятами',
-                'price' : '4 330.00'
-            },
-            {
-                'image' : 'assets/img/products/shafa3.jpg',
-                'name' : 'Шафа-купе VMV',
-                'description' : 'Шафа-купе VMV 2-дверна з великими роздвіжними дверцятами',
-                'price' : '7 900.00'
-            },
-        ],
+        'products': product,
         'colors':color,
     } 
     return render(request,'products/catalog.html', context)

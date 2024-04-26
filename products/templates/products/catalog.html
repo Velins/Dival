@@ -1,5 +1,6 @@
 {%extends "main/base.html"%}
 {% load static %}
+{% load product_tags %}
 
 {% block content %}
 <div class="container-fluid">
@@ -30,7 +31,7 @@
               {% for color in colors %}
               <div class="form-check d-flex justify-content-between">  
                 <div>
-                  <input class="form-check-input" type="checkbox" value="" id="{{color.name}}">
+                  <input class="form-check-input" type="checkbox" value="" id="{{color.id}}">
                   <label class="form-check-label" for="flexCheckDefault">
                     {{color.name}}  
                   </label>
@@ -133,14 +134,22 @@
         </div>
       </div>
       <div class="row">
-        {% for product in  products%}
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-3">
+        {% for product in  products %}
+        <div class="col-xxl-3 col-xl-4 col-md-6 mb-3">
           <div class="product-card">
             <div class="product-card-offer">
-              {% comment %} <div class="offer-hit">ХІТ</div> {% endcomment %}
+              {% if product.discount  %}
+              <div class="offer-hit">SALE</div>
+              {% endif %}
             </div>
             <div class="product-thumb">
-              <a href="{% url "products:product" %}"><img src="{% static product.image %}"></a>
+              <a href="{% url "products:product" %}">
+                {% if  product.image %}
+              <img src="{{ product.image.url}}">
+              {%else%}
+              <img src="{% static "assets/img/image_not_found.png" %}">
+              {% endif %}
+            </a>
             </div>
             <div class="product-details">
               <h4>
@@ -148,7 +157,15 @@
               </h4>
               <p class="product-excerpt">{{product.description}}</p>
               <div class="produc-bottom-details">
-                <div class="product-price">{{product.price}}<div class="currency">ГРН</div></div>
+                <div class="product-price">
+                  {% if product.discount  %}
+                    <small>{{product.price}}</small> 
+                           {{product.sell_price}}
+                  {% else %}
+                         {{product.price}}
+                  {% endif %}
+                  <div class="currency">ГРН</div>
+                </div>
                 <div class="product-links">
                   <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
                 </div>

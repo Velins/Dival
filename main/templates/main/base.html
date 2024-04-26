@@ -1,4 +1,5 @@
 {% load static %}
+{% load product_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,6 +105,7 @@
                                   Каталог
                                 </a>
                                 <ul class="dropdown-menu">
+                                  {% tag_category as categories %}
                                   {% for category in categories %}
                                   <li><a class="dropdown-item" href="{% url "products:index" %}">{{category.name}}</a></li>
                                   {% endfor %}
@@ -126,15 +128,8 @@
                       </div>
                     </div>
                   </nav>
-                  <div class="header-catalog p-3">
-                    <div class="container-fluid">
-                        <div class="row text-center">
-                          {% for category in categories %}
-                            <div class="col"><a href="{% url "products:index" %}">{{category.name}}</a></div>
-                          {% endfor %}
-                        </div>
-                    </div>
-            </div>
+                  {% block head_catalog %}
+                  {% endblock head_catalog %}
         </header>
         <main class="main">
           {% block content %}
