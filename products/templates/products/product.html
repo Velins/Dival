@@ -9,7 +9,7 @@
             <nav class="breadcrums">
                 <ul>
                     <li><a href="{% url "main:index" %}">Головна</a></li>
-                    <li><a href="{% url "main:index" %}">Catalog name</a></li>
+                    <li><a href="{% url "catalog:index" product.category.slug %}">{{product.category.name}}</a></li>
                     <li><span>{{product.name}}</span></li>
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
     <div class="col-md-12 col-lg-6 mb-3">
       <div class="product-content p-3 h-100">
         <h1 class="section-title-product-name"><span>{{product.name}}</span></h1>
-        <p class="product-content-p">{{product.description}}</p>
+        <p class="product-content-p">{{product.description|linebreaks}}</p>
         <div class="product-add2cart">
           <div class="input-group">
             <input type="number" class="form-control" value="1" min="1">
