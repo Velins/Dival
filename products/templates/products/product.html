@@ -10,7 +10,7 @@
                 <ul>
                     <li><a href="{% url "main:index" %}">Головна</a></li>
                     <li><a href="{% url "main:index" %}">Catalog name</a></li>
-                    <li><span>Product name</span></li>
+                    <li><span>{{product.name}}</span></li>
                 </ul>
             </nav>
         </div>
@@ -23,13 +23,13 @@
       <div id="carouselFade" class="carousel carousel-dark slide carousel-fade">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static "assets/img/products/shafa1.jpg" %}"class="d-block " alt="...">
+            <img src="{{product.image.url}}"class="d-block " alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static "assets/img/products/shafa2.jpg" %}"class="d-block" alt="...">
+            <img src="{{product.image.url}}"class="d-block" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{% static "assets/img/products/shafa3.jpg" %}"class="d-block" alt="...">
+            <img src="{{product.image.url}}"class="d-block" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselFade" data-bs-slide="prev">
@@ -45,15 +45,15 @@
     </div>
     <div class="col-md-12 col-lg-6 mb-3">
       <div class="product-content p-3 h-100">
-        <h1 class="section-title-product-name"><span>Product Name</span></h1>
-        <p class="product-content-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ut debitis consectetur ducimus ullam vero ab odit dolorem. Similique odit id minima aspernatur aut suscipit a ullam. Minima, id quis!</p>
+        <h1 class="section-title-product-name"><span>{{product.name}}</span></h1>
+        <p class="product-content-p">{{product.description}}</p>
         <div class="product-add2cart">
           <div class="input-group">
             <input type="number" class="form-control" value="1" min="1">
             <button class="btn">
               <img src="{% static "assets/img/cart-solid.svg"%}" alt="" width="30px"> Додати в корзину
             </button>
-            <div class="product-price">5 200<div class="currency">ГРН</div></div>
+            <div class="product-price">{{product.sell_price}}<div class="currency">ГРН</div></div>
           </div>
         </div>
         <div class="row mt-3">
