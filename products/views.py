@@ -2,7 +2,9 @@ from django.shortcuts import render, get_list_or_404,  get_object_or_404
 from django.core.paginator import Paginator
 from products.models import Material, Style, Color, Products, Category
 
-def catalog(request, category_slug, page=1):
+def catalog(request, category_slug):
+
+    page = request.GET.get('page', 1)
 
     if category_slug == 'all':
         product = Products.objects.all()
@@ -13,7 +15,7 @@ def catalog(request, category_slug, page=1):
         category_name = category.name  
 
     paginator = Paginator(product, 2)
-    current_page = paginator.page(page)
+    current_page = paginator.page(int(page))
 
     color = Color.objects.all()  
     
