@@ -336,6 +336,12 @@ img
     text-align: center;
     margin: 10px;
 }
+
+.product-thumb img
+{
+    border-radius: 2%;
+}
+
  .product-details
 {
     padding: 10px 20px 10px 10px;
@@ -494,7 +500,6 @@ img
     text-transform: uppercase;
 }
 /* ====================== LOCATION RULSE =====================*/
-
 
 /* ====================== CATALOG RULSE =====================*/
 .breadcrums

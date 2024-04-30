@@ -36,3 +36,48 @@ const footer = document.querySelector('.footer');
 contacsts.addEventListener('click', () => {
     footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    const submitButton = document.getElementById('submitButton');
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            let anyChecked = false;
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    anyChecked = true;
+                }
+            });
+            if (anyChecked) {
+                submitButton.style.display = 'block';
+            } else {
+                submitButton.style.display = 'none';
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const sortOption = document.getElementById('sortOption');
+    const sortForm = document.getElementById('sortForm');
+
+    sortOption.addEventListener('change', function() {
+        sortForm.submit();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Знаходимо кнопку для очищення фільтрів за її id
+    const clearFiltersButton = document.getElementById('clearFiltersButton');
+
+    // Додаємо обробник подій для натискання кнопки
+    clearFiltersButton.addEventListener('click', function() {
+        // Встановлюємо новий URL без параметрів запиту
+        window.history.replaceState({}, document.title, window.location.pathname);
+        // Перезавантажуємо сторінку
+        window.location.reload();
+    });
+});
+

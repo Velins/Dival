@@ -23,57 +23,73 @@
         <button class="btn w-100 text-start collapse-filters-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseExample">
           <img src="{% static "assets/img/filter.svg" %}" alt="filter" width="20px">Фільтри
         </button>
-
         <div class="collapse collapse-filters" id="collapseFilters">
           <div class="filter-block">
             <h5 class="section-title-filter"><span>Колір корпусу</span></h5>
-            <form action="">
-              {% for color in colors %}
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="{{color.id}}">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    {{color.name}}  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
+            <form id="filterForm" action="{% url 'catalog:index' slug_url %}" method="get">
+              <!-- Фільтр за кольорами -->
+              <div>
+                  {% for color in colors %}
+                  <div class="form-check d-flex justify-content-between">  
+                      <div>
+                        <input class="form-check-input" type="checkbox" name="color[]" value="{{ color.id }}"
+                        {% if 'color' in request.GET and color.id in request.GET.color %} checked {% endif %}> 
+                          <label class="form-check-label" for="flexCheckDefault">
+                              {{ color.name }}  
+                          </label>
+                      </div>
+                      {% for item in color_counts %}
+                      {% if item.color__name == color.name %}
+                          <span class="badge border rounded-0">{{ item.total }}</span>
+                      {% endif %}
+                  {% endfor %}
+                  </div>
+                  {% endfor %}
               </div>
-              {% endfor %}
-            </form>
+              <!-- Фільтр за матеріалами -->
+              <div>
+                  <h5 class="section-title-filter"><span>Матеріал корпусу</span></h5>
+                  {% for material in materials %}
+                  <div class="form-check d-flex justify-content-between">  
+                      <div>
+                          <input class="form-check-input" type="checkbox" name="material[]" value="{{ material.id }}"
+                          {% if 'material' in request.GET and material.id in request.GET.material %} checked {% endif %}>
+                          <label class="form-check-label" for="flexCheckDefault">
+                              {{ material.name }}  
+                          </label>
+                      </div>
+                      {% for item in material_counts %}
+                      {% if item.material__name == material.name %}
+                          <span class="badge border rounded-0">{{ item.total }}</span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
+              </div>
+              <div>
+                <h5 class="section-title-filter"><span>Стиль</span></h5>
+                {% for style in styles %}
+                <div class="form-check d-flex justify-content-between">  
+                    <div>
+                        <input class="form-check-input" type="checkbox" name="style[]" value="{{ style.id }}"
+                        {% if 'style' in request.GET and style.id in request.GET.style %} checked {% endif %}>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{ style.name }}  
+                        </label>
+                    </div>
+                    {% for item in style_counts %}
+                      {% if item.style__name == style.name %}
+                          <span class="badge border rounded-0">{{ item.total }}</span>
+                      {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+              <!-- Кнопка підтвердження -->
+              <button type="submit" id="submitButton" class="btn btn-danger" style="display: none;">Підтвердити</button>
+          </form>
           </div>
-          <div class="filter-block">
-            <h5 class="section-title-filter"><span>Матеріал корпусу</span></h5>
-            <form action="">
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="wood">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Дерево  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="Chipboard">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    ДСП  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="Chipboard2">
-                  <label class="form-check-label" for="flexCheckDefault">
-                  ЛДСП  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-            </form>
-          </div>
-          <div class="filter-block">
+          {% comment %} <div class="filter-block">
             <h5 class="section-title-filter"><span>Стиль</span></h5>
             <form action="">
               <div class="form-check d-flex justify-content-between">  
@@ -113,7 +129,7 @@
                 <span class="badge border rounded-0">0</span>
               </div>
             </form>
-          </div>
+          </div> {% endcomment %}
         </div>
       </div>
     </div>
@@ -124,16 +140,20 @@
           </div>
         </div>
       <div class="row">
-        <div class="col-12">
-          <select class="form-select">
-            <option value="1" selected>Від дешевих до дорогих</option>
-            <option value="2">Від дорогих до дешевих</option>
-            <option value="3">За назвою</option>
+        <div class="col-12 d-flex align-items-center">
+          <form id='sortForm' action="{% url 'catalog:index' slug_url %}" method="GET">
+          <select id="sortOption" name="sort_option" class="form-select m-3">
+            <option value="">Сортувати в категорії :</option>
+            <option value="1{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">Від дешевих до дорогих</option>
+            <option value="2{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">Від дорогих до дешевих</option>
+            <option value="3{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">За назвою</option>
           </select>
+        </form>
+        <button type="button" class="btn btn-danger" id="clearFiltersButton">Очистити</button>
         </div>
       </div>
       <div class="row">
-        {% for product in  products %}
+        {% for product in products %}
         <div class="col-xxl-3 col-xl-4 col-md-6 mb-3">
           <div class="product-card">
             <div class="product-card-offer">
@@ -178,26 +198,21 @@
         <div class="col-12">
           <nav aria-label="Page navigation">
             <ul class="pagination">
+
               <li class="page-item {% if not products.has_previous %} disabled {% endif %}">
-                <a class="page-link" href="{% if products.has_previous %}?page={{products.previous_page_number}}{% else %}
-                #
-                {% endif %}"><<</a>
+                <a class="page-link" href="{% if products.has_previous %}?{%change_params page=products.previous_page_number%}{% else %}#{% endif %}"><<</a>
               </li>
 
               {% for page in products.paginator.page_range %}
               {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
               <li class="page-item {% if products.number == page %} active {% endif %}">
-                <a class="page-link" href="?page={{page}}">{{page}}</a>
+                <a class="page-link" href="?{%change_params page=page%}">{{page}}</a>
               </li>
               {% endif %}
               {% endfor %}  
 
               <li class="page-item {% if not products.has_next %} disabled {% endif %}">
-                <a class="page-link" href="{% if products.has_next %} 
-                ?page={{products.next _page_number}}
-                {% else %}
-                #
-                {% endif %}">>></a>
+                <a class="page-link" href="{% if products.has_next %}?{%change_params page=products.next_page_number%}{% else %}#{% endif %}">>></a>
               </li>
             </ul>
           </nav>
