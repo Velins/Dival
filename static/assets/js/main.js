@@ -41,7 +41,11 @@ contacsts.addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", function() {
     const checkboxes = document.querySelectorAll('.form-check-input');
     const submitButton = document.getElementById('submitButton');
+    const sortOption = document.getElementById('sortOption');
+    const sortForm = document.getElementById('sortForm');
+    const clearFiltersButton = document.getElementById('clearFiltersButton');
 
+    // Обробник події для зміни чекбоксів
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             let anyChecked = false;
@@ -57,27 +61,19 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-    const sortOption = document.getElementById('sortOption');
-    const sortForm = document.getElementById('sortForm');
-
+    // Обробник події для вибору сортування
     sortOption.addEventListener('change', function() {
         sortForm.submit();
     });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Знаходимо кнопку для очищення фільтрів за її id
-    const clearFiltersButton = document.getElementById('clearFiltersButton');
-
-    // Додаємо обробник подій для натискання кнопки
+    // Обробник події для очищення фільтрів
     clearFiltersButton.addEventListener('click', function() {
-        // Встановлюємо новий URL без параметрів запиту
         window.history.replaceState({}, document.title, window.location.pathname);
-        // Перезавантажуємо сторінку
         window.location.reload();
     });
+
+    // Інші обробники подій...
 });
+
 

@@ -68,16 +68,16 @@
                             </a>
                         </div>
                         <div class="col-lg-4  order-lg-1 text-end">
-                            <form action="">
+                            <form action="{% url "catalog:search"  %}" method="GET">
                                 <div class="input-group">
                                     <nav class="navbar">
                                         <div class="container-fluid">
-                                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                                            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                                                 <span class="navbar-toggler-icon"></span>
-                                              </button>
+                                              </button> 
                                         </div>
                                       </nav>
-                                    <input type="text" class="form-control" name="search" placeholder="Пошук..." aria-label="Recipient's username" aria-describedby="button-search">
+                                    <input type="search" class="form-control" name="q" placeholder="Пошук..." aria-describedby="button-search">
                                         <button class="btn btn-outline" type="submit" id="button-search">
                                             <img src="{%static "assets/img/search.svg"%}" width=24px>
                                         </button>

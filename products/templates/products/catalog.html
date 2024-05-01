@@ -26,14 +26,16 @@
         <div class="collapse collapse-filters" id="collapseFilters">
           <div class="filter-block">
             <h5 class="section-title-filter"><span>Колір корпусу</span></h5>
-            <form id="filterForm" action="{% url 'catalog:index' slug_url %}" method="get">
+            <form id="filterForm" action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{%endif%}" method="get">
               <!-- Фільтр за кольорами -->
               <div>
                   {% for color in colors %}
                   <div class="form-check d-flex justify-content-between">  
                       <div>
-                        <input class="form-check-input" type="checkbox" name="color[]" value="{{ color.id }}"
-                        {% if 'color' in request.GET and color.id in request.GET.color %} checked {% endif %}> 
+                        <input class="form-check-input" type="checkbox" name="color[]" value="{{ color.id }}" {% if color.id in selected_colors %} checked {% endif %}>
+                        {% if request.GET.q %}
+                        <input type="hidden" name="q" value="{{request.GET.q}}">
+                        {% endif %} 
                           <label class="form-check-label" for="flexCheckDefault">
                               {{ color.name }}  
                           </label>
@@ -52,8 +54,7 @@
                   {% for material in materials %}
                   <div class="form-check d-flex justify-content-between">  
                       <div>
-                          <input class="form-check-input" type="checkbox" name="material[]" value="{{ material.id }}"
-                          {% if 'material' in request.GET and material.id in request.GET.material %} checked {% endif %}>
+                        <input class="form-check-input" type="checkbox" name="material[]" value="{{ material.id }}" {% if material.id in selected_materials %} checked {% endif %}>
                           <label class="form-check-label" for="flexCheckDefault">
                               {{ material.name }}  
                           </label>
@@ -71,8 +72,7 @@
                 {% for style in styles %}
                 <div class="form-check d-flex justify-content-between">  
                     <div>
-                        <input class="form-check-input" type="checkbox" name="style[]" value="{{ style.id }}"
-                        {% if 'style' in request.GET and style.id in request.GET.style %} checked {% endif %}>
+                      <input class="form-check-input" type="checkbox" name="style[]" value="{{ style.id }}" {% if style.id in selected_styles %} checked {% endif %}>
                         <label class="form-check-label" for="flexCheckDefault">
                             {{ style.name }}  
                         </label>
