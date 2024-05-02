@@ -25,7 +25,7 @@ def catalog(request, category_slug= None):
             style_counts = product.values('style__name').annotate(total=Count('style'))
     elif query:
         product = q_search(query)
-        category_name = 'Результат пошуку'
+        category_name = 'Результати пошуку'
         color_counts = product.values('color__name').annotate(total=Count('color'))
         material_counts = product.values('material__name').annotate(total=Count('material'))
         style_counts = product.values('style__name').annotate(total=Count('style'))

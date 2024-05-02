@@ -136,7 +136,21 @@
     <div class="col-lg-9 col-md-8">
         <div class="row">
           <div class="col-12">
-            <h2 class="section-title-catalog"><span>{{category_name}}</span></h2>
+            <h2 class="section-title-catalog"><span>
+              {% if  request.GET.q %} Результати по запиту "{{request.GET.q}}"
+              {% if  not products %} - По запиту нічого не знайдено <!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+              </head>
+              <body>
+                
+              </body>
+              </html>
+              {% endif %}
+              {% endif %}</span></h2>
           </div>
         </div>
       <div class="row">
@@ -172,9 +186,21 @@
             </div>
             <div class="product-details">
               <h4>
-                <a href="{% url "catalog:product" product.slug %}">{{product.name}}</a>
+                <a href="{% url "catalog:product" product.slug %}">
+                  {% autoescape off %}
+                    {% if product.headline %}{{product.headline}}
+                    {% else %}{{product.name}}
+                    {% endif %}</a>
+                  {% endautoescape %}
               </h4>
-              <p class="product-excerpt">{{product.description}}</p>
+              <p class="product-excerpt">
+                {% autoescape off %}
+                    {% if product.bodyline %}{{product.bodyline}}
+                    {% else %}{{product.description}}
+                    {% endif %}</a>
+                {% endautoescape %}
+                
+              </p>
               <div class="produc-bottom-details">
                 <div class="product-price">
                   {% if product.discount  %}
@@ -194,6 +220,7 @@
         </div> 
         {% endfor %}
       </div>
+      {% if products %}
       <div class="row">
         <div class="col-12">
           <nav aria-label="Page navigation">
@@ -218,6 +245,7 @@
           </nav>
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>
