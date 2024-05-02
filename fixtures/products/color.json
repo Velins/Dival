@@ -1,0 +1,1 @@
+[{"model": "products.color", "pk": "Color_1", "fields": {"name": "Коричневий", "slug": "korichnevij"}}, {"model": "products.color", "pk": "Color_2", "fields": {"name": "Чорний", "slug": "chornij"}}, {"model": "products.color", "pk": "Color_3", "fields": {"name": "Сірий", "slug": "sirij"}}]

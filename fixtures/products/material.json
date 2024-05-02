@@ -1,0 +1,1 @@
+[{"model": "products.material", "pk": "Material_1", "fields": {"name": "Дерево", "slug": "derevo"}}, {"model": "products.material", "pk": "Material_2", "fields": {"name": "ДСП", "slug": "dsp"}}, {"model": "products.material", "pk": "Material_3", "fields": {"name": "ЛДСП", "slug": "ldsp"}}]

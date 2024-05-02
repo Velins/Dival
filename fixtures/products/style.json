@@ -1,0 +1,1 @@
+[{"model": "products.style", "pk": "Style_1", "fields": {"name": "Лофт", "slug": "loft"}}, {"model": "products.style", "pk": "Style_2", "fields": {"name": "Модерн", "slug": "modern"}}, {"model": "products.style", "pk": "Style_3", "fields": {"name": "Мінімалізм", "slug": "minimalizm"}}]
