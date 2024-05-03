@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="breadcrums">
+                <ul>
+                    <li><a href="{% url "main:index" %}">Головна</a></li>
+                    <li><span>Авторизація</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-3">
+  <div class="row">
+    <div class="col-2">
+      <div class="register-benefits">
+        <h2>Чому варто зареєструватись ?</h2>
+        <ul>
+          <li><span class="benefits-numbers">1</span> Ви користуєтесь привілеями та спец. пропозиціями</li>
+          <li><span class="benefits-numbers">2</span> Швидші покупки, завдяки особистим даним</li>
+          <li><span class="benefits-numbers">3</span> Ви отримуєте доступ до історії замовлень</li>
+        </ul>
+      </div>
+    </div>
+      <div class="col-8">
+        <div class="page-login p-3">
+          <h2 class="section-title-login"><span>АВТОРИЗАЦІЯ</span></h2>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <form action="" class="needs-validation" novalidate>
+
+                <div class="lg-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                  <div class="invalid-feedback">
+                    Введіть коректний Email - name@example.com
+                  </div>
+                </div>                   
+
+                <div class="lg-3">
+                  <label for="password" class="form-label">Пароль</label>
+                  <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                  <div class="invalid-feedback">
+                    Введіть пароль
+                  </div>
+                  <div class="forgot-pass text-end"><a href="">Забули пароль ?</a><a href="{% url "user:registration" %}">Створити аккаунт</a></div> 
+                </div>
+                
+                <div class="lg-3 text-center">
+                  <button type="submit" class="btn">Авторизуватись</button>
+                </div>
+                <div class="another-login text-center">
+                <p>АБО АВТОРИЗУЙТЕСЬ ЧЕРЕЗ</p>
+                <button type="submit" class="btn auth">
+                  <img src="{% static "/assets/img/google.svg"%}" alt="" width="20px"> Google
+                </button>
+              </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+{% endblock%}

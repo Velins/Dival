@@ -717,6 +717,157 @@ img
 
 /* ====================== PRODUCT PAGE RULSE =====================*/
 
+/* ====================== REGISTER RULSE =====================*/
+.section-title-register
+{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.page-register form
+{
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-bottom: 3px solid #fc4646;
+    border-top: 3px solid #fc4646;
+}
+
+.page-register form input
+{
+    font-size: 20px;
+}
+
+.page-register .form-label
+{   
+    transition: transform 0.3s ease; 
+    padding: 8px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.page-register .form-label:hover
+{   
+    transform: scale(1.1); 
+}
+
+.page-register .btn
+{
+    white-space: nowrap;
+    font-size: 20px;
+    margin-top: 30px;
+    width: 300px;
+    background-color: var(--text-color);
+    color:#fff;
+    transition: transform 0.3s ease; 
+}
+
+.page-register .btn:hover
+{
+    transform: scale(1.1);
+    background-color: var(--accent-color);
+}
+/* ====================== REGISTER RULSE =====================*/
+
+/* ====================== AUTHORIZATION RULSE =====================*/
+.section-title-login
+{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.page-login form
+{
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-bottom: 3px solid #fc4646;
+    border-top: 3px solid #fc4646;
+}
+
+.page-login form input
+{
+    font-size: 20px;
+}
+.page-login .forgot-pass
+{
+    margin: 10px 15px;
+    text-decoration: underline;
+}
+
+.page-login .forgot-pass a
+{
+        margin-left: 10px;
+}
+
+.page-login .another-login p
+{
+    margin-top: 20px;
+    white-space: nowrap;
+}
+
+.page-login .another-login .btn 
+{
+    font-size: 20px;
+    margin: 0px;
+    width: 150px;
+}
+
+.page-login .form-label
+{   
+    transition: transform 0.3s ease; 
+    padding: 8px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.page-login .form-label:hover
+{   
+    transform: scale(1.1); 
+}
+
+.page-login .btn
+{
+    margin-top: 30px;
+    width: 300px;
+    font-size: 20px;
+    background-color: var(--text-color);
+    color:#fff;
+    transition: transform 0.3s ease; 
+}
+
+.page-login .btn:hover
+{
+    transform: scale(1.1);
+    background-color: var(--accent-color);
+}
+
+.register-benefits h2
+{
+    white-space: nowrap;
+}
+
+.register-benefits ul
+{
+    list-style: none;
+}
+
+.register-benefits ul li
+{
+    font-size: 16px;
+    margin-top: 30px;
+    white-space: nowrap;
+}
+
+.register-benefits .benefits-numbers
+{
+    font-size: 15px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #eb1b1b;
+}
+
+/* ====================== AUTHORIZATION RULSE =====================*/
 
 /* ====================== MAIN RULSE =====================*/
 
@@ -909,6 +1060,10 @@ img
 
 @media (max-width:1500px)
 {
+    .register-benefits
+    {
+        display: none;
+    }
     .header-top-menu 
     {
         display: none;
@@ -916,6 +1071,49 @@ img
 }
 
 @media (max-width:1150px) {
+    
+    .page-register form input
+    {
+    font-size: 15px;
+    }
+
+    .page-register .form-label
+    {   
+    font-size: 15px;
+    }
+
+    .page-register .btn
+    {
+        font-size: 15px;
+        width: 160px;
+    }
+
+    .page-login form input
+    {
+    font-size: 15px;
+    }
+
+    .page-login .form-label
+    {   
+    font-size: 15px;
+    }
+
+    .page-login .btn
+    {
+        font-size: 15px;
+        width: 160px;
+    }
+
+    .page-login .another-login p
+    {
+        font-size: 15px;
+    }
+
+    .page-login .another-login .btn
+    {
+        font-size: 15px;
+    }
+
     .header-logo-phone
     {
         display: none;

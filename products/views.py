@@ -57,7 +57,7 @@ def catalog(request, category_slug= None):
     elif sort_option == '3':
         product = product.order_by('name')  # За назвою
 
-    paginator = Paginator(product, 6)
+    paginator = Paginator(product, 3)
     current_page = paginator.page(int(page))
 
     color = Color.objects.all()  

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="breadcrums">
+                <ul>
+                    <li><a href="{% url "main:index" %}">Головна</a></li>
+                    <li><span>Реєстрація</span></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-3">
+  <div class="row">
+    <div class="col-2"></div>
+      <div class="col-8">
+        <div class="page-register p-3">
+          <h2 class="section-title-register"><span>РЕЄСТРАЦІЯ</span></h2>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <form action="" class="needs-validation" novalidate>
+
+                <div class="lg-3">
+                  <label for="name" class="form-label">Ім'я</label>
+                  <input type="text" class="form-control" id="name" placeholder="Ім'я" required>
+                  <div class="invalid-feedback">
+                    Введіть Ім'я
+                  </div>
+                </div>
+
+                <div class="lg-3">
+                  <label for="surname" class="form-label">Прізвище</label>
+                  <input type="text" class="form-control" id="surname" placeholder="Прізвище" required>
+                  <div class="invalid-feedback">
+                    Введіть Прізвище
+                  </div>
+                </div>
+
+                <div class="lg-3">
+                  <label for="phone" class="form-label">Телефон</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Телефон" required>
+                  <div class="invalid-feedback">
+                    Невірний телефон !
+                  </div>
+                </div>
+
+                <div class="lg-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                  <div class="invalid-feedback">
+                    Введіть коректний email - name@example.com
+                  </div>
+                </div>                   
+
+                <div class="lg-3">
+                  <label for="password" class="form-label">Пароль</label>
+                  <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                  <div class="invalid-feedback">
+                    Введіть пароль
+                  </div>
+                </div>
+
+                <div class="lg-3">
+                  <label for="repeat_password" class="form-label">Повторіть пароль</label>
+                  <input type="repeat_password" class="form-control" id="repeat_password" placeholder="Повторіть пароль" required>
+                  <div class="invalid-feedback">
+                    Введіть пароль
+                  </div>
+                </div>
+                
+                <div class="lg-3 text-center">
+                  <button type="submit" class="btn">Створити Акаунт</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+      </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+{% endblock %}
