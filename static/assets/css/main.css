@@ -45,6 +45,11 @@ img
     height: auto;
 }
 
+.btn-close
+{
+    --bs-btn-close-focus-shadow: white;
+}
+
 .form-control:focus
 {
     border: 2px solid;  
@@ -768,7 +773,12 @@ img
     background-color: var(--accent-color);
 }
 /* ====================== REGISTER RULSE =====================*/
-
+.invalid-feedback
+{
+    background-color: #f8d7da; 
+    padding: 3px;
+    border-radius: 2px;
+}
 /* ====================== AUTHORIZATION RULSE =====================*/
 .section-title-login
 {
@@ -1110,6 +1120,11 @@ img
     }
 
     .page-login .another-login .btn
+    {
+        font-size: 15px;
+    }
+
+    .alert span
     {
         font-size: 15px;
     }
