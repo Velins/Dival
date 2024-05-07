@@ -22,51 +22,94 @@
           <h2 class="section-title-register"><span>РЕЄСТРАЦІЯ</span></h2>
           <div class="row">
             <div class="col-md-6 offset-md-3">
-              <form action="" class="needs-validation" novalidate>
-
+              <form action="{% url "user:registration" %}" method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}  
                 <div class="lg-3">
-                  <label for="name" class="form-label">Ім'я</label>
-                  <input type="text" class="form-control" id="name" placeholder="Ім'я" required>
+                  <label for="id_first_name" class="form-label">Ім'я</label>
+                  <input type="text" class="form-control" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" name="first_name" id="id_first_name" placeholder="Введіть Ім'я" required>
+                  {% if form.first_name.errors %}
+                  <div class="alert alert-danger" role="alert">s
+                    {{form.first_name.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
                     Введіть Ім'я
                   </div>
                 </div>
 
                 <div class="lg-3">
-                  <label for="surname" class="form-label">Прізвище</label>
-                  <input type="text" class="form-control" id="surname" placeholder="Прізвище" required>
+                  <label for="id_last_name" class="form-label">Прізвище</label>
+                  <input type="text" class="form-control" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" name="last_name" id="id_last_name" placeholder="Введіть Прізвище" required>
+                  {% if form.last_name.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.last_name.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
                     Введіть Прізвище
                   </div>
                 </div>
 
                 <div class="lg-3">
-                  <label for="phone" class="form-label">Телефон</label>
-                  <input type="tel" class="form-control" id="phone" placeholder="Телефон" required>
+                  <label for="id_username" class="form-label">Логін</label>
+                  <input type="text" class="form-control" value="{% if form.username.value %}{{form.username.value}}{% endif %}" name="username"  id="id_username" placeholder="Введіть @nickname" required>
+                  {% if form.username.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.username.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
-                    Невірний телефон !
+                    Введіть ім'я користувача
                   </div>
                 </div>
 
                 <div class="lg-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                  <label for="id_phone" class="form-label">Телефон</label>
+                  <input type="text" class="form-control" value="{% if form.phone.value %}{{form.phone.value}}{% endif %}" name="phone" id="id_phone" placeholder="+380(000)000-00-00" required>
+                  {% if form.phone.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.phone.errors}}
+                  </div>
+                  {% endif %}
+                  <div class="invalid-feedback">
+                    Введіть телефон !
+                  </div>
+                </div>
+
+                <div class="lg-3">
+                  <label for="id_email" class="form-label">Email</label>
+                  <input type="email" class="form-control" value="{% if form.email.value %}{{form.email.value}}{% endif %}" name="email" id="id_email" placeholder="Введіть name@example.com" required>
+                  {% if form.email.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.email.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
                     Введіть коректний email - name@example.com
                   </div>
                 </div>                   
 
                 <div class="lg-3">
-                  <label for="password" class="form-label">Пароль</label>
-                  <input type="password" class="form-control" id="password" placeholder="Пароль" required>
+                  <label for="id_password1" class="form-label">Пароль</label>
+                  <input type="text" class="form-control" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}" name="password1" id="id_password1" placeholder="Введіть Пароль" required>
+                  {% if form.password1.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.password1.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
                     Введіть пароль
                   </div>
                 </div>
 
                 <div class="lg-3">
-                  <label for="repeat_password" class="form-label">Повторіть пароль</label>
-                  <input type="repeat_password" class="form-control" id="repeat_password" placeholder="Повторіть пароль" required>
+                  <label for="id_password2" class="form-label">Повторіть пароль</label>
+                  <input type="text" class="form-control" value="{% if form.password2.value %}{{form.password2.value}}{% endif %}" name="password2" id="id_password2" placeholder="Повторіть пароль" required>
+                  {% if form.password2.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.password2.errors}}
+                  </div>
+                  {% endif %}
                   <div class="invalid-feedback">
                     Введіть пароль
                   </div>

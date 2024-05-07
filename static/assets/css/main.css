@@ -877,6 +877,23 @@ img
     border: 2px solid #eb1b1b;
 }
 
+.page-register .alert
+{   
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.page-register .errorlist
+{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.page-register .errorlist li
+{
+    padding-bottom: 5px;
+}
 /* ====================== AUTHORIZATION RULSE =====================*/
 
 /* ====================== MAIN RULSE =====================*/

@@ -14,6 +14,16 @@ $(document).ready(function() {
     });
 });
 
+
+// Маска телефону укр. формату 
+const element = document.getElementById('id_phone');
+const maskOptions = {
+  mask: '+{38}(000)000-00-00',
+  lazy: false
+};
+const mask = IMask(element, maskOptions);
+
+
 // Отримуємо всі посилання з класом animate-link
 const links = document.querySelectorAll('.header-catalog a');
 
