@@ -12,16 +12,17 @@ $(document).ready(function() {
         $('html, body').animate({ scrollTop: 0 }, 50);
         return false;
     });
+
+    var notifictaion = $('#notification')
+
+    if (notifictaion.length > 0)
+        {
+            setTimeout(function() {
+                notifictaion.alert("close");
+            }, 3000 )
+        }
 });
 
-
-// Маска телефону укр. формату 
-const element = document.getElementById('id_phone');
-const maskOptions = {
-  mask: '+{38}(000)000-00-00',
-  lazy: false
-};
-const mask = IMask(element, maskOptions);
 
 
 // Отримуємо всі посилання з класом animate-link
@@ -72,16 +73,20 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    if (sortOption) {
     // Обробник події для вибору сортування
     sortOption.addEventListener('change', function() {
         sortForm.submit();
     });
+    }
 
+    if (sortOption) {
     // Обробник події для очищення фільтрів
     clearFiltersButton.addEventListener('click', function() {
         window.history.replaceState({}, document.title, window.location.pathname);
         window.location.reload();
     });
+    }   
 
     // Інші обробники подій...
 });
@@ -107,3 +112,13 @@ document.addEventListener("DOMContentLoaded", function() {
       
     })
   })()
+
+// Маска телефону укр. формату 
+const element = document.getElementById('id_phone');
+if (element) {
+    const maskOptions = {
+        mask: '+{38}(000)000-00-00',
+        lazy: false
+      };
+      const mask = IMask(element, maskOptions);
+}

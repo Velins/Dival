@@ -63,7 +63,7 @@
                                 <img src="{% static "assets/img/cart.svg" %}" width=30px>
                                 <span class="badge text-bg-danger"></span>
                               </a>
-                            <a href="{% url "user:login" %}" class="btn">
+                            <a href="{% if user.is_authenticated %}{% url "user:profile" %}{% else %}{% url "user:login" %}{% endif %}" class="btn">
                                 <img src="{% static "assets/img/user.svg" %}" width=30px>
                                 <span class="badge text-bg-danger"></span>
                             </a>
@@ -133,6 +133,7 @@
                   {% endblock head_catalog %}
         </header>
         <main class="main">
+          {% include "includes/notifications.html" %}
           {% block content %}
           {% endblock content %}
         </main>

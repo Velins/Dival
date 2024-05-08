@@ -33,12 +33,12 @@
             <div class="col-md-6 offset-md-3">
               <form action="{% url "user:login" %}" method="POST" class="needs-validation" novalidate>
                 {% csrf_token %}
-                {% include "includes/notifications.html" %}
+                {% include "includes/notification_login.html" %}
                 <div class="lg-3">
-                  <label for="id_username" class="form-label">Логін</label>
-                  <input type="username" class="form-control" value="{% if form.username.value %}{{form.username.value}}{% endif %}" name="username" id="id_username" placeholder="Введіть логін" required>
+                  <label for="id_email" class="form-label">Email</label>
+                  <input type="email" class="form-control" value="{% if form.username.value %}{{form.username.value}}{% endif %}" name="username" id="id_email" placeholder="Введіть email" required>
                   <div class="invalid-feedback">
-                    Введіть логін користувача
+                    Невірний Email !
                   </div>
                 </div>                   
 
@@ -46,7 +46,7 @@
                   <label for="id_password" class="form-label">Пароль</label>
                   <input type="password" class="form-control" name="password" id="id_password" placeholder="Введіть пароль" required>
                   <div class="invalid-feedback">
-                    Введіть пароль користувача
+                    Введіть пароль користувача !
                   </div>
 
                   <div class="forgot-pass text-end"><a href="">Забули пароль ?</a><a href={% url "users:registration" %}>Створити аккаунт</a></div> 

@@ -1,0 +1,8 @@
+{% load static %}
+
+{% if form.non_field_errors %}
+<div class="alert alert-danger alert-dismissible lg-3" role="alert">
+    <span>Неправильний Email або пароль!</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}

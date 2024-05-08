@@ -1,8 +1,24 @@
 {% load static %}
 
-{% if form.non_field_errors %}
-<div class="alert alert-danger alert-dismissible lg-3" role="alert">
-    <span>Неправильний логін або пароль!</span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+{% if  messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <div class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-success border-0 mt-3" id="notification" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex justify-content-center">
+            <div class="toast-body text-center">
+                {{message}}
+            </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if message.tags == 'warning' %}
+        <div class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-warning border-0 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex justify-content-center">
+            <div class="toast-body text-center">
+                {{message}}
+            </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}

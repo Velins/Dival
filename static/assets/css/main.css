@@ -896,6 +896,100 @@ img
 }
 /* ====================== AUTHORIZATION RULSE =====================*/
 
+/* ====================== PROFILE RULSE =====================*/
+
+.sidebar-profile
+{
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid #eb1b1b;
+    margin-bottom: 10px;
+}
+
+.sidebar-profile h1
+{
+    white-space: nowrap;
+    font-size: 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+.sidebar-profile ul
+{
+    margin-top: 30px;
+    list-style: none;
+}
+
+.sidebar-profile ul li
+{
+    white-space: nowrap;
+    padding: 5px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.sidebar-profile a
+{
+    padding: 10px;
+}
+
+.sidebar-profile li:hover
+{
+    border-radius: 5px;
+    background-color: #eff1f3;
+}
+
+.sidebar-profile img
+{
+    padding-right: 10px;
+    width: 40px;
+}
+
+.profile-content
+{   
+    border-radius: 10px;
+    border: 2px solid #eb1b1b;
+    margin-bottom: 300px;
+}
+
+.personal-data
+{
+    padding: 20px;
+}
+.personal-data input
+{
+    font-size: 19px;
+}
+.personal-data .form-label
+{
+    transition: transform 0.3s ease; 
+    padding-top: 25px;
+    padding-left: 15px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.personal-data .form-label:hover
+{
+    transform: scale(1.1); 
+}
+
+.personal-data h1
+{
+    font-size: 35px;
+    padding: 10px 30px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.personal-data .btn
+{
+    margin-top: 30px;
+    width: 200px;
+    font-size: 20px;
+    background-color: var(--text-color);
+    color:#fff;
+    transition: transform 0.3s ease; 
+}
+/* ====================== PROFILE RULSE =====================*/
+
 /* ====================== MAIN RULSE =====================*/
 
 /* ====================== FOOTER RULSE =====================*/
@@ -985,7 +1079,7 @@ img
     border-radius: 50%;
     border: 0;
     transition:  .5s;
-    z-index: 10;
+    z-index: 5;
 }
 
 #top:hover

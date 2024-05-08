@@ -1,11 +1,11 @@
 from django import forms
 from users.models import User
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
 class UserLoginForm(AuthenticationForm):
     class Meta:
             model = User
-            fields = ['username','password']
+            fields = ('username','password')
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
@@ -13,16 +13,28 @@ class UserRegistrationForm(UserCreationForm):
         fields = (
                 "first_name",
                 "last_name",
-                "username",
                 "phone",
                 "email",
                 "password1",
                 "password2",)
         
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    username = forms.CharField()
-    phone = forms.CharField()
-    email = forms.CharField()
-    password1 = forms.CharField()
-    password2 = forms.CharField()
+        first_name = forms.CharField()
+        last_name = forms.CharField()
+        phone = forms.CharField()
+        email = forms.CharField()
+        password1 = forms.CharField()
+        password2 = forms.CharField()
+
+class ProfileForm(UserChangeForm):
+     class Meta:
+        model = User
+        fields = (
+                "first_name",
+                "last_name",
+                "phone",
+                "email",)
+        
+        first_name = forms.CharField()
+        last_name = forms.CharField()
+        phone = forms.CharField()
+        email = forms.CharField()

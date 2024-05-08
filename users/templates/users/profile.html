@@ -2,5 +2,103 @@
 {% load static %}
 
 {% block content %}
-<h1>User Profile</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="breadcrums">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="#">магазин</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-sm-5">
+      <div class="sidebar-profile">
+        <h1><img src="" alt=""><span>{{form.first_name.value}} {{form.last_name.value}}</span></h1>
+        <ul>
+          <li><a href=""><img src="{% static "assets/img/user.svg"%}">Персональні дані</a></li>
+          {% if  user.is_admin or user.is_staff%}
+          <li><a href="{% url "admin:index" %}"><img src="{% static "assets/img/admin.svg"%}">Адмін. панель</a></li>
+          {% endif %}
+          <li><a href=""><img src="{% static "assets/img/cart-arrow.svg"%}">Мої замовлення</a></li>
+          <li><a href=""><img src="{% static "assets/img/heart.svg" %}">Список бажаного</a></li>
+          <li><a href="{% url "user:logout" %}"><img src="{% static "assets/img/exit.svg"%}">Вийти</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-8 col-sm-7">
+      <div class="profile-content">
+        <div class="personal-data">
+          <h1>Персональні дані</h1>
+          <form action="{% url "user:profile" %}" method="POST" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="row">
+
+            <div class="col-md-6">
+              <label for="id_first_name" class="form-label">Ім'я</label>
+              <input type="text" class="form-control" value="{{form.first_name.value}}" name="first_name" id="id_first_name" placeholder="Введіть Ім'я" required>
+              {% if form.first_name.errors %}
+              <div class="alert alert-danger" role="alert">s
+                {{form.first_name.errors}}
+              </div>
+              {% endif %}
+              <div class="invalid-feedback">
+                Введіть Ім'я
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="id_last_name" class="form-label">Прізвище</label>
+              <input type="text" class="form-control" value="{{form.last_name.value}}" name="last_name" id="id_last_name" placeholder="Введіть Прізвище" required>
+              {% if form.last_name.errors %}
+              <div class="alert alert-danger" role="alert">
+                {{form.last_name.errors}}
+              </div>
+              {% endif %}
+              <div class="invalid-feedback">
+                Введіть Прізвище
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="id_phone" class="form-label">Телефон</label>
+                  <input type="text" class="form-control" value="{{form.phone.value}}" name="phone" id="id_phone" placeholder="+380(000)000-00-00" required>
+                  {% if form.phone.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.phone.errors}}
+                  </div>
+                  {% endif %}
+                  <div class="invalid-feedback">
+                    Введіть телефон !
+                  </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="id_email" class="form-label">Email</label>
+                  <input type="email" class="form-control" value="{{form.email.value}}" name="email" id="id_email" placeholder="Введіть name@example.com" required>
+                  {% if form.email.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{form.email.errors}}
+                  </div>
+                  {% endif %}
+                  <div class="invalid-feedback">
+                    Введіть коректний email - name@example.com
+                  </div>
+            </div>   
+
+            <div class="col-12 text-end">
+              <button type="submit" class="btn">Зберегти</button>
+            </div>
+
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
