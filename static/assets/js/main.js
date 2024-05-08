@@ -16,10 +16,12 @@ $(document).ready(function() {
     var notifictaion = $('#notification')
 
     if (notifictaion.length > 0)
-        {
-            setTimeout(function() {
-                notifictaion.alert("close");
-            }, 3000 )
+            {setTimeout(function (){
+                notifictaion.fadeOut();
+            }, 2000)
+            setTimeout(function (){
+                notifictaion.alert('close');
+            }, 2300)
         }
 });
 

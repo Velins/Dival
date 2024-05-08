@@ -33,6 +33,9 @@
             <div class="col-md-6 offset-md-3">
               <form action="{% url "user:login" %}" method="POST" class="needs-validation" novalidate>
                 {% csrf_token %}
+                {% if request.GET.next %}
+                  <input type="hidden" name="next" value={{request.GET.next}}>
+                {% endif %}
                 {% include "includes/notification_login.html" %}
                 <div class="lg-3">
                   <label for="id_email" class="form-label">Email</label>
