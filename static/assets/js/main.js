@@ -25,8 +25,6 @@ $(document).ready(function() {
         }
 });
 
-
-
 // Отримуємо всі посилання з класом animate-link
 const links = document.querySelectorAll('.header-catalog a');
 

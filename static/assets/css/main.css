@@ -45,6 +45,11 @@ img
     height: auto;
 }
 
+#notification
+{
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7); 
+}
+
 .btn-close
 {
     --bs-btn-close-focus-shadow: white;
@@ -780,6 +785,67 @@ img
     border-radius: 2px;
 }
 /* ====================== AUTHORIZATION RULSE =====================*/
+
+/* ====================== MODAL AUTHORIZATION RULSE =====================*/
+
+.modal-body .btn
+{
+    margin-top: 30px;
+    width: 200px;
+    font-size: 20px;
+    background-color: var(--text-color);
+    color:#fff;
+    transition: transform 0.3s ease; 
+}
+
+.modal-body .btn:hover
+{
+    transform: scale(1.1);
+    background-color: var(--accent-color);
+}
+
+.modal-body form input
+{
+    font-size: 20px;
+}
+.modal-body .forgot-pass
+{
+    margin: 10px 15px;
+    text-decoration: underline;
+}
+
+.modal-body .forgot-pass a
+{
+        margin-left: 10px;
+}
+
+.modal-body.another-login p
+{
+    margin-top: 20px;
+    white-space: nowrap;
+}
+
+.modal-body .another-login .btn 
+{
+    font-size: 20px;
+    margin: 0px;
+    width: 150px;
+}
+
+.modal-body .form-label
+{   
+    transition: transform 0.3s ease; 
+    padding: 8px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.modal-body .form-label:hover
+{   
+    transform: scale(1.1); 
+}
+/* ====================== MODAL AUTHORIZATION RULSE =====================*/
+
 .section-title-login
 {
     display: flex;
@@ -1093,76 +1159,108 @@ img
 }
 
 
-/* ====================== CART RULSE =====================*/
 
-.cart-content
+
+/* ====================== CART RULSE =====================*/
+.product-cart
 {
+    margin-bottom: 50px;
+    border-bottom: 2px solid var(--accent-color);
+}
+.cart-content 
+{
+    white-space: nowrap;
     background-color: var(--bg-g-color);
 }
+
+.cart-content h1
+{
+    font-size: 35px;
+}
+
+.cart-content ul
+{
+    list-style: none;
+} 
+
 .cart-content .product-price
 {
-    white-space: nowrap;
+    font-size: 30px;
 }
-.cart-content .product-price .currency
+
+.section-title-cart
 {
-    white-space: nowrap;
+    font-size: 35px;
+    padding: 10px 20px;
+    border-bottom: 3px solid var(--accent-color);
+    margin-bottom: 30px;
 }
-.cart-content .product-img-td
+
+.section-title-cart .badge
 {
-
-    width: 200px;
-    text-align: center;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
 
-.cart-content .table 
-{ 
-    text-align: center;
-}
-
-.cart-content .table-product-name
-{
-    width: 250px;
-    display: block;
-    font-size: 20px;
-}
-
-.cart-content .table-qty
+.ch-qty
 {
     font-size: 23px;
-    color: var(--accent-color);
-}
-.cart-content .table-head th
-{
-    
-    font-size: 20px;
-    color: #fff;
-    background-color: var(--text-color);
 }
 
-.cart-content .table td:not(:first-child)
+.ch-qty .btn
 {
-    padding: 30px;
+    border-radius: 0;
+    font-size: 30px;
 }
 
-.cart-content .btn
+.cart-content li
 {
-    background-color: var(--text-color);
-    width: 60px;
-}
+    margin-top: 10px;
+} 
 
-.cart-content .btn:focus
-{
-    background-color: var(--text-color);
-    border-color: var(--accent-color);
-}
-.cart-qty
-{
-    width: 60px;
-}
 .cart-summary
 {
+    white-space: nowrap;
     background-color: var(--bg-g-color);
     padding: 32px;
+}
+
+.cart-summary ul
+{
+    font-size: 23px;
+    list-style: none;
+}
+
+.cart-summary ul li 
+{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-summary .btn
+{
+   margin-top: 30px;
+   font-size: 20px;
+   color: white;
+   background-color: var(--text-color);
+   width: 100%;
+}
+.cart-summary .total
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    font-size: 23px;
+}
+
+.section-title-summary
+{
+    font-size: 30px;
+    padding: 10px 20px;
+    border-bottom: 3px solid var(--accent-color);
+    margin-bottom: 30px;
 }
 /* ====================== CART RULSE =====================*/
 

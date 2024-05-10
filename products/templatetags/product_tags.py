@@ -1,6 +1,7 @@
 from django import template
 from django.utils.http import urlencode
 from products.models import Category
+from users.forms import UserLoginForm
 
 register = template.Library()
 
@@ -13,3 +14,4 @@ def change_params(context,**kwargs):
     query = context['request'].GET.dict()
     query.update(kwargs)
     return urlencode(query)
+

@@ -3,7 +3,7 @@
 {% if  messages %}
     {% for message in messages %}
         {% if message.tags == 'success' %}
-        <div class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-success border-0 mt-3" id="notification" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="notification" class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-success border-0 mt-3"  role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex justify-content-center">
             <div class="toast-body text-center">
                 {{message}}
@@ -11,8 +11,8 @@
             </div>
         </div>
         {% endif %}
-        {% if message.tags == 'warning' %}
-        <div class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-warning border-0 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+        {% if message.tags == 'error' %}
+        <div id="notification" class="toast d-block position-fixed start-50 translate-middle-x z-3 align-items-center text-bg-danger border-0 mt-3" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex justify-content-center">
             <div class="toast-body text-center">
                 {{message}}

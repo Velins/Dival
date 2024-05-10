@@ -23,7 +23,10 @@ def login(request):
                 if request.POST.get('next', None):
                     return HttpResponseRedirect(request.POST.get('next'))
                 
-                return HttpResponseRedirect(reverse('main:index'))
+                return redirect(request.META['HTTP_REFERER'])
+        else:
+            messages.error(request, "Неправильний email або пароль!")
+            return redirect(request.META['HTTP_REFERER'])
     else:
         form = UserLoginForm()
 
@@ -31,7 +34,7 @@ def login(request):
         'title': 'Логін',
         'form': form
     }
-    return render(request, 'users/login.html', context)
+    return redirect(request.META['HTTP_REFERER'])
 
 
 def registration (request):
@@ -42,7 +45,7 @@ def registration (request):
                 user = form.instance
                 auth.login(request, user)
                 messages.success(request, "Ви успішно зареєстувались !")
-                return HttpResponseRedirect(reverse('main:index'))
+                return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = UserRegistrationForm()
 
@@ -68,6 +71,9 @@ def profile (request):
         'form' : form
     }
     return render(request,'users/profile.html', context)   
+
+def users_cart(request):
+    return render(request,'users/users_cart.html')   
 
 @login_required
 def logout (request):

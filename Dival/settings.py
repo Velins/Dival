@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "phonenumber_field",
    
-    
+    'carts',
     'users',
     'main',
     'products',

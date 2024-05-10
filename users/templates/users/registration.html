@@ -16,7 +16,16 @@
 </div>
 <div class="container-fluid mb-3">
   <div class="row">
-    <div class="col-2"></div>
+    <div class="col-2">
+      <div class="register-benefits">
+        <h2>Чому варто зареєструватись ?</h2>
+        <ul>
+          <li><span class="benefits-numbers">1</span> Ви користуєтесь привілеями та спец. пропозиціями</li>
+          <li><span class="benefits-numbers">2</span> Швидші покупки, завдяки особистим даним</li>
+          <li><span class="benefits-numbers">3</span> Ви отримуєте доступ до історії замовлень</li>
+        </ul>
+      </div>
+    </div>
       <div class="col-8">
         <div class="page-register p-3">
           <h2 class="section-title-register"><span>РЕЄСТРАЦІЯ</span></h2>
@@ -28,7 +37,7 @@
                   <label for="id_first_name" class="form-label">Ім'я</label>
                   <input type="text" class="form-control" value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" name="first_name" id="id_first_name" placeholder="Введіть Ім'я" required>
                   {% if form.first_name.errors %}
-                  <div class="alert alert-danger" role="alert">s
+                  <div class="alert alert-danger" role="alert">
                     {{form.first_name.errors}}
                   </div>
                   {% endif %}
