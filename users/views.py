@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
+from carts.models import Cart
 # Create your views here.
 
 # Ваші імпорти та інші в'юшки
@@ -20,7 +21,8 @@ def login(request):
                 auth.login(request, user)
                 messages.success(request, "Ви увійшли в аккаунт!")
 
-                if request.POST.get('next', None):
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('user:logout'):
                     return HttpResponseRedirect(request.POST.get('next'))
                 
                 return redirect(request.META['HTTP_REFERER'])
@@ -72,8 +74,8 @@ def profile (request):
     }
     return render(request,'users/profile.html', context)   
 
-def users_cart(request):
-    return render(request,'users/users_cart.html')   
+def users_carts(request):
+     return render(request, "users/users_cart.html")
 
 @login_required
 def logout (request):

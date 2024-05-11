@@ -1,5 +1,8 @@
 {% load static %}
 {% load product_tags %}
+{% load carts_tags %}
+{% user_carts request as carts %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +64,7 @@
                             </a>
                             <a href="{% url "user:user_cart" %}" class="btn">
                                 <img src="{% static "assets/img/cart.svg" %}" width=35px>
-                                <span class="badge text-bg-danger"></span>
+                                <span class="badge text-bg-danger">{{carts.total_quantity}}</span>
                               </a>
                             <a {% if user.is_authenticated %} href="{% url "user:profile" %}" {% else %} data-bs-target="#exampleModalToggle" data-bs-toggle="modal"{% endif %} class="btn">
                                 <img src="{% static "assets/img/user.svg" %}" width=35px>
