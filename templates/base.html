@@ -64,7 +64,7 @@
                             </a>
                             <a href="{% url "user:user_cart" %}" class="btn">
                                 <img src="{% static "assets/img/cart.svg" %}" width=35px>
-                                <span class="badge text-bg-danger">{{carts.total_quantity}}</span>
+                                <span class="badge text-bg-danger">{% if carts %}{{carts.total_quantity}}{% endif %}</span>
                               </a>
                             <a {% if user.is_authenticated %} href="{% url "user:profile" %}" {% else %} data-bs-target="#exampleModalToggle" data-bs-toggle="modal"{% endif %} class="btn">
                                 <img src="{% static "assets/img/user.svg" %}" width=35px>
