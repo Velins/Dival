@@ -1,4 +1,92 @@
 $(document).ready(function() {
+    
+    var successMessage =  $("#jq-notification");
+
+    $(document).on("click", ".add-to-card", function (e) {
+        
+        e.preventDefault();
+
+        var productsInCartCount = $("#products-in-cart-count");
+        var cartCount = parseInt(productsInCartCount.text() || 0);
+
+        var product_id = $(this).data("product-id");
+
+        var add_to_cart_url = $(this).attr("href");
+
+        $.ajax({
+            type : "POST",
+            url : add_to_cart_url,
+            data :{
+                product_id : product_id,
+                csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val(),
+            },
+            success: function (data){
+                successMessage.html(data.message);
+                successMessage.fadeIn(400);
+
+                setTimeout(function (){
+                    successMessage.fadeOut(400);
+                }, 2000);
+
+                cartCount++;
+                productsInCartCount.text(cartCount);
+
+                var cartItemsContainer = $("#cart-items-container");
+                cartItemsContainer.html(data.cart_items_html);
+                
+            },
+
+            error: function (data) {
+                console.log("Помилка додавння товару в корзину !");
+            },
+        })
+    });
+    
+
+    $(document).on("click", ".remove-from-cart", function (e) {
+
+        e.preventDefault();
+
+        var productsInCartCount = $("#products-in-cart-count");
+        var cartCount = parseInt(productsInCartCount.text() || 0);
+
+        var cart_id = $(this).data("cart-id");
+
+        var remove_from_cart = $(this).attr("href");
+
+        $.ajax({
+
+            type: "POST",
+            url: remove_from_cart,
+            data: {
+                cart_id: cart_id,
+                csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()
+            },
+            success: function (data) {
+
+                successMessage.html(data.message);
+                successMessage.fadeIn(400);
+
+                setTimeout(function () {
+                    successMessage.fadeOut(400);
+                }, 2000);
+
+                cartCount -= data.quantity_deleted;
+                productsInCartCount.text(cartCount);
+
+                var cartItemsContainer = $("#cart-items-container");
+                cartItemsContainer.html(data.cart_items_html);  // Змінюємо вміст контейнера
+            },
+
+            error: function (data) {
+                console.log("Помилка додавання товару в корзину !");
+            },
+        });
+    });
+});
+
+
+$(document).ready(function() {
     $(window).scroll(function() {
         if ($(this).scrollTop() > 1000) {
             $('#top').fadeIn(); // Показати кнопку з ефектом зникнення
@@ -24,6 +112,8 @@ $(document).ready(function() {
             }, 2300)
         }
 });
+
+
 
 // Отримуємо всі посилання з класом animate-link
 const links = document.querySelectorAll('.header-catalog a');

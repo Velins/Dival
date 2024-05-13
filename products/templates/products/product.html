@@ -50,7 +50,7 @@
         <div class="product-add2cart">
           <div class="input-group">
             <input type="number" class="form-control" value="1" min="1">
-            <a href="{% url "cart:cart_add" product.slug%}" class="btn">
+            <a href="{% url "cart:cart_add" %}" class="btn add-to-card" data-product-id="{{product.id}}">{% csrf_token %}
               <img src="{% static "assets/img/cart-solid.svg"%}" alt="" width="30px"> Додати в кошик
             </a>
             <div class="product-price">{{product.sell_price}}<div class="currency">ГРН</div></div>

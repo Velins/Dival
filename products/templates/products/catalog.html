@@ -201,7 +201,7 @@
                   <div class="currency">ГРН</div>
                 </div>
                 <div class="product-links">
-                  <a href="{% url "cart:cart_add" product.slug%}" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                  <a href="{% url "cart:cart_add" %}" class="btn add-to-card" data-product-id="{{product.id}}">{% csrf_token %}<img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
                 </div>
               </div>
             </div>
