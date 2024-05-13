@@ -8,10 +8,15 @@ from products.models import Category, Products, Material, Style, Color
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
+    list_display = ['name']
 
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
+    list_display = ['name', 'quantity', 'price', 'discount']
+    list_editable = ['quantity', 'price', 'discount']
+    search_fields = ['name', 'quantity', 'price', 'discount', 'description']
+    list_filter = ['quantity', 'discount', 'category', 'color', 'material', 'style']
 
 @admin.register(Material)
 class MaterialAdmin(admin.ModelAdmin):

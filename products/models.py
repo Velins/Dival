@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -90,7 +91,10 @@ class Products(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return self.name
+         return f'{self.name}, кількість - {self.quantity}'
+    
+    def get_absolute_url(self):
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
     def sell_price(self):
         if self.discount:

@@ -16,7 +16,7 @@ class Cart(models.Model):
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE, verbose_name='Товар ')
     quantity = models.PositiveSmallIntegerField(default=0, verbose_name='Кількість ')
     session_key = models.CharField(max_length=32, null=True, blank=True)
-    created_timestap = models.DateTimeField(auto_now_add=True, verbose_name='Дата додавання ' )
+    created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Дата додавання ' )
 
     class Meta:
         db_table = 'cart'
@@ -29,4 +29,7 @@ class Cart(models.Model):
         return round(self.product.sell_price() * self.quantity, 2)
     
     def __str__(self):
-        return f'Кошик {self.user.first_name} | Товар {self.product.name} | Кількість {self.quantity}'
+        if self.user:
+            return f'Кошик {self.user.first_name} | Товар {self.product.name} | Кількість {self.quantity}'
+        
+        return f'Кошик анонімного користувача | Товар {self.product.name} | Кількість {self.quantity}'
