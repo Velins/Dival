@@ -53,9 +53,9 @@
                       </li>
                     </ul>
                     <div class="ch-qty d-flex flex-diraction-column align-items-center">
-                      <button class="btn">-</button>
-                      <div class="qty">{{ cart.quantity }}</div>
-                      <button class="btn">+</button>
+                      <button class="btn decrement" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url "cart:cart_change" %}">{% csrf_token %}-</button>
+                      <div class="quantity">{{ cart.quantity }}</div>
+                      <button class="btn increment" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url "cart:cart_change" %}">{% csrf_token %}+</button>
                     </div>
                   </div>
                   <div class="col-sm-4 d-flex flex-column justify-content-between align-items-end">
