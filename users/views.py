@@ -91,6 +91,7 @@ def profile (request):
 def users_carts(request):
     return render(request, "users/users_cart.html")
 
+
 @login_required
 def logout (request):
     auth.logout(request)

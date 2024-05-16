@@ -1059,6 +1059,109 @@ img
 }
 /* ====================== PROFILE RULSE =====================*/
 
+/* ====================== ORDER RULSE =====================*/
+.section-title-order
+{
+    white-space: wrap;
+    font-size: 30px;
+    padding: 10px;
+    border-bottom: 3px solid var(--accent-color);
+    margin-bottom: 30px;
+}
+.order-personal-data input
+{
+    font-size: 17px;
+}
+.order-personal-data .form-label
+{
+    transition: transform 0.3s ease;
+    padding-top: 10px;
+    padding-left: 5px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.order-personal-data .form-label:hover
+{
+    transform: scale(1.1);
+}
+
+.ch-delivery input
+{
+    font-size: 17px;
+}
+
+.ch-delivery .form-label
+{
+    padding-top: 10px;
+    padding-left: 5px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.ch-delivery .radio-check 
+{
+    font-size: 20px;
+    margin: 30px 5px;
+}
+
+.order-content
+{
+    white-space: nowrap;
+    background-color: var(--bg-g-color);
+}
+
+.order-content .btn
+{
+    margin-top: 30px;
+    font-size: 20px;
+    color: white;
+    background-color: var(--text-color);
+    width: 50%;
+} 
+
+.section-title-cart-order
+{
+    font-size: 25px;
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--accent-color);
+    margin-bottom: 30px;
+}
+
+.section-title-cart-order .badge {
+    padding: 3px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+
+.section-title-cart-order a:hover
+{
+    text-decoration: underline;
+}
+
+.product-price-order
+{
+    display: flex;
+    white-space: nowrap;
+    font-size: 20px;
+
+}
+.product-price-order .currency
+{
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.product-cart .product-excerpt
+{
+    font-weight: bolder;
+    white-space: wrap;
+    text-decoration: underline;
+}
+
+
+/* ====================== ORDER RULSE =====================*/
+
 /* ====================== MAIN RULSE =====================*/
 
 /* ====================== FOOTER RULSE =====================*/
@@ -1170,9 +1273,15 @@ img
     margin-bottom: 50px;
     border-bottom: 2px solid var(--accent-color);
 }
-.cart-content 
+
+.product-cart ul
 {
     white-space: nowrap;
+    list-style: none;
+}
+
+.cart-content 
+{
     background-color: var(--bg-g-color);
 }
 
@@ -1180,11 +1289,6 @@ img
 {
     font-size: 35px;
 }
-
-.cart-content ul
-{
-    list-style: none;
-} 
 
 .cart-content .product-price
 {

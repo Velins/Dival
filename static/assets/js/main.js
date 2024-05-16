@@ -179,6 +179,16 @@ $(document).ready(function() {
                 notifictaion.alert('close');
             }, 2300)
         }
+
+    $("input[name='requires_delivery']").change(function () {
+        var selectedValue = $(this).val();
+        // Скрываем или отображаем input ввода адреса доставки
+        if (selectedValue === "1") {
+            $("#deliveryAddressField").show();
+        } else {
+            $("#deliveryAddressField").hide();
+        }
+    });
 });
 
 
@@ -246,8 +256,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     }   
 
-    // Інші обробники подій...
+
 });
+
 
 // Для форм Авторизації та Реєстрації 
 
@@ -278,5 +289,17 @@ if (element) {
         mask: '+{38}(000)000-00-00',
         lazy: false
       };
-      const mask = IMask(element, maskOptions);
+    const mask = IMask(element, maskOptions);
 }
+
+    // Інші обробники подій...
+    const maxLength = 20; // Максимальна кількість символів перед скороченням
+    const elements = document.querySelectorAll(".product-excerpt");
+
+    elements.forEach(element => {
+        const originalText = element.textContent;
+        if (originalText.length > maxLength) {
+        const truncatedText = originalText.slice(0, maxLength) + "...";
+        element.textContent = truncatedText;
+        }
+  });

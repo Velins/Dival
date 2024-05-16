@@ -1,93 +1,74 @@
 {% load static %}
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <nav class="breadcrums">
-          <ul>
-            <li>
-              <a href="index.html">Головна</a>
-            </li>
-            <li>
-              <a href="index.html">магазин</a>
-            </li>
-            <li>
-              <span>Сatalog name</span>
-            </li>
-          </ul>
-        </nav>
+  <div class="row">
+    <div class="col-lg-8 mb-3">
+      <div class="cart-content p-3">
+        <div class="section-title-cart">
+          Кошик{% if carts %}
+            <span class="badge text-bg-danger">{{ carts.total_quantity }}</span>
+          {% else %}
+            пустий ;)
+          {% endif %}
+        </div>
+        <div class="cart-container">
+          {% for cart in carts %}
+          <div class="product-cart">
+            <div class="row">
+              <div class="product-img col-sm-4">
+                <a href="{% url 'catalog:product' cart.product.slug %}"><img src="{{ cart.product.image.url }}" alt="" /></a>
+              </div>
+              <div class="prdouct-info col-sm-4 mt-4">
+                <a href="{% url 'catalog:product' cart.product.slug %}"><h1>{{ cart.product.name }}</h1></a>
+                <ul>
+                  <li>
+                    Код товару: <span>{{ cart.product.id }}</span>
+                  </li>
+                  <li>
+                    Матеріал: <span>{{ cart.product.material }}</span>
+                  </li>
+                  <li>
+                    Колір: <span>{{ cart.product.color }}</span>
+                  </li>
+                  <li>
+                    Стиль: <span>{{ cart.product.style }}</span>
+                  </li>
+                </ul>
+                <div class="ch-qty d-flex flex-diraction-column align-items-center">
+                  <button class="btn decrement" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url 'cart:cart_change' %}">{% csrf_token %}-</button>
+                  <div class="quantity">{{ cart.quantity }}</div>
+                  <button class="btn increment" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url 'cart:cart_change' %}">{% csrf_token %}+</button>
+                </div>
+              </div>
+              <div class="col-sm-4 d-flex flex-column justify-content-between align-items-end">
+                <a href="{% url 'cart:cart_remove' %}" class="btn btn-close btn-lg remove-from-cart order-sm-1 order-2" data-cart-id="{{ cart.id }}">{% csrf_token %}</a>
+                <div class="product-price order-sm-2 order-1">
+                  {{ cart.products_price }}<div class="currency">ГРН</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 mb-3">
+      <div class="cart-summary">
+        <div class="section-title-summary">Всього</div>
+        <ul>
+          <li>
+            <span>Товари :</span><span>{{ carts.total_quantity }}</span>
+          </li>
+          <li>
+            <span>Загальна сума:</span><span>{{ carts.total_price }} грн</span>
+          </li>
+        </ul>
+        <div class="total">
+          Оплата<span>{{ carts.total_price }} грн</span>
+        </div>
+        {% if carts %}
+          <a class="btn" href="{% url "orders:create_order" %}">Оформити замовлення</a>
+        {% endif %}
       </div>
     </div>
   </div>
-  <div class="container-fluid"  id="cart-items-container">
-    <div class="row">
-      <div class="col-lg-8 mb-3">
-        <div class="cart-content p-3">
-          <div class="section-title-cart">
-            Кошик{% if carts %}
-              <span class="badge text-bg-danger">{{ carts.total_quantity }}</span>
-            {% else %}
-              пустий ;)
-            {% endif %}
-          </div>
-          <div class="cart-container" >
-            {% for cart in carts %}
-              <div class="product-cart">
-                <div class="row">
-                  <div class="product-img col-sm-4">
-                    <a href="{% url 'catalog:product' cart.product.slug %}"><img src="{{ cart.product.image.url }}" alt="" /></a>
-                  </div>
-                  <div class="prdouct-info col-sm-4 mt-4">
-                    <a href="{% url 'catalog:product' cart.product.slug %}"><h1>{{ cart.product.name }}</h1></a>
-                    <ul>
-                      <li>
-                        Код товару: <span>{{ cart.product.id }}</span>
-                      </li>
-                      <li>
-                        Матеріал: <span>{{ cart.product.material }}</span>
-                      </li>
-                      <li>
-                        Колір: <span>{{ cart.product.color }}</span>
-                      </li>
-                      <li>
-                        Стиль: <span>{{ cart.product.style }}</span>
-                      </li>
-                    </ul>
-                    <div class="ch-qty d-flex flex-diraction-column align-items-center">
-                      <button class="btn decrement" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url "cart:cart_change" %}">{% csrf_token %}-</button>
-                      <div class="quantity">{{ cart.quantity }}</div>
-                      <button class="btn increment" data-cart-id="{{ cart.id }}" data-cart-change-url="{% url "cart:cart_change" %}">{% csrf_token %}+</button>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 d-flex flex-column justify-content-between align-items-end">
-                    <a href="{% url 'cart:cart_remove' %}" class="btn btn-close btn-lg remove-from-cart order-sm-1 order-2" data-cart-id="{{ cart.id }}">{% csrf_token %}</a>
-                    <div class="product-price order-sm-2 order-1">
-                      {{ cart.products_price }}<div class="currency">ГРН</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-3">
-        <div class="cart-summary">
-          <div class="section-title-summary">Всього</div>
-          <ul>
-            <li>
-              <span>Товари :</span><span>{{ carts.total_quantity }}</span>
-            </li>
-            <li>
-              <span>Загальна сума:</span><span>{{ carts.total_price }} грн</span>
-            </li>
-          </ul>
-          <div class="total">
-            Оплата<span>{{ carts.total_price }} грн</span>
-          </div>
-          {% if carts %}
-            <button class="btn">Оформити замовлення</button>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div> 
+</div>
