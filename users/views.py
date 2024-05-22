@@ -5,11 +5,10 @@ from django.shortcuts import redirect
 from carts.utils import get_user_carts
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Prefetch
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 from carts.models import Cart
-# Create your views here.
-
-# Ваші імпорти та інші в'юшки
+from orders.models import Order, OrderItem
 
 def login(request):
     if request.method == 'POST':
@@ -90,6 +89,25 @@ def profile (request):
 
 def users_carts(request):
     return render(request, "users/users_cart.html")
+
+@login_required
+def orders (request):
+    orders = Order.objects.filter(user=request.user).prefetch_related(
+                Prefetch(
+                    "orderitem_set",
+                    queryset=OrderItem.objects.select_related("product"),
+                )
+            ).order_by("-id")
+    
+    form = ProfileForm(instance = request.user)
+    
+    context = {
+        'title' : 'Мої замовлення',
+        'form' : form,
+        'orders': orders,
+    }
+
+    return render(request,'users/orders.html', context) 
 
 
 @login_required

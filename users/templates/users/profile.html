@@ -7,8 +7,8 @@
         <div class="col-12">
             <nav class="breadcrums">
                 <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="#">магазин</a></li>
+                  <li><a href="{% url "main:index" %}">Головна</a></li>
+                  <li><a href="{% url "user:orders" %}">Особистий кабінет</a></li>
                 </ul>
             </nav>
         </div>
@@ -18,13 +18,13 @@
   <div class="row">
     <div class="col-lg-3 col-sm-5">
       <div class="sidebar-profile">
-        <h1><img src="" alt=""><span>{{form.first_name.value}} {{form.last_name.value}}</span></h1>
+        <h1><span>{{form.first_name.value}} {{form.last_name.value}}</span></h1>
         <ul>
-          <li><a href=""><img src="{% static "assets/img/user.svg"%}">Персональні дані</a></li>
+          <li><a href="{% url "user:profile" %}"><img src="{% static "assets/img/user.svg"%}">Персональні дані</a></li>
           {% if  user.is_admin or user.is_staff%}
           <li><a href="{% url "admin:index" %}"><img src="{% static "assets/img/admin.svg"%}">Адмін. панель</a></li>
           {% endif %}
-          <li><a href=""><img src="{% static "assets/img/cart-arrow.svg"%}">Мої замовлення</a></li>
+          <li><a href="{% url "user:orders" %}"><img src="{% static "assets/img/cart-arrow.svg"%}">Мої замовлення</a></li>
           <li><a href=""><img src="{% static "assets/img/heart.svg" %}">Список бажаного</a></li>
           <li><a href="{% url "user:logout" %}"><img src="{% static "assets/img/exit.svg"%}">Вийти</a></li>
         </ul>

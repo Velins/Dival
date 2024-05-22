@@ -184,9 +184,11 @@ $(document).ready(function() {
         var selectedValue = $(this).val();
         // Скрываем или отображаем input ввода адреса доставки
         if (selectedValue === "1") {
-            $("#deliveryAddressField").show();
+            $(".address input").attr("required", true);
+            $(".address").show();
         } else {
-            $("#deliveryAddressField").hide();
+            $(".address input").removeAttr("required");
+            $(".address").hide();
         }
     });
 });
@@ -209,12 +211,13 @@ links.forEach(link => {
     });
 });
 
-const contacsts = document.getElementById('footer');
+const contacts = document.getElementById('footer');
 const footer = document.querySelector('.footer');
 
-contacsts.addEventListener('click', () => {
+if (contacts && footer) {
+contacts.addEventListener('click', () => {
     footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+})};
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -248,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     }
 
-    if (sortOption) {
+    if (clearFiltersButton) {
     // Обробник події для очищення фільтрів
     clearFiltersButton.addEventListener('click', function() {
         window.history.replaceState({}, document.title, window.location.pathname);
@@ -294,7 +297,7 @@ if (element) {
 
     // Інші обробники подій...
     const maxLength = 20; // Максимальна кількість символів перед скороченням
-    const elements = document.querySelectorAll(".product-excerpt");
+    const elements = document.querySelectorAll(".product-order-name");
 
     elements.forEach(element => {
         const originalText = element.textContent;

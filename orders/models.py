@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 from products.models import Products
+from phonenumber_field.modelfields import PhoneNumberField
 
 class OrderitemQueryset(models.QuerySet):
     
@@ -16,7 +17,7 @@ class OrderitemQueryset(models.QuerySet):
 class Order(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.SET_DEFAULT, blank=True, null=True, verbose_name="Користувач", default=None)
     created_timestamp = models.DateTimeField(auto_now_add=True, verbose_name="Дата стоврення замовлення")
-    phone = models.CharField(max_length=20, verbose_name="Номер телефона")
+    phone = PhoneNumberField(verbose_name = "Номер телефону")
     requires_delivery = models.BooleanField(default=False, verbose_name="Потрібна доставка")
     delivery_address = models.TextField(null=True, blank=True, verbose_name="Адреса доставки")
     payment_on_get = models.BooleanField(default=False, verbose_name="Післяплата")
@@ -48,7 +49,7 @@ class OrderItem(models.Model):
     objects = OrderitemQueryset.as_manager()
 
     def products_price(self):
-        return round(self.price(    ) * self.quantity, 2)
+        return round(self.price * self.quantity, 2)
 
     def __str__(self):
         return f"Товар {self.name} | Замовлення № {self.order.pk}"

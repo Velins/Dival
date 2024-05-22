@@ -28,15 +28,15 @@ class CreateOrderForm(forms.Form):
     building = forms.CharField(required=False)
     apartment = forms.CharField(required=False)
 
-    def clean_phone_number(self):
+    def clean_phone(self):
         phone = self.cleaned_data['phone']
 
-        # Перевірка на коректність номеру за допомогою регулярних виразів
-        if not re.match(r'^\+?3?8?(0\d{9})$', phone):
-            raise forms.ValidationError("Неправильний формат номера телефону")
-
+        digits_only_phone = re.sub(r'\D', '', phone)  # Видалити всі нецифрові символи
+        if len(digits_only_phone) != 12:
+            raise forms.ValidationError("Номер телефону повинен містити 10 цифр")
+        
         # Перевірка на належність до кодів операторів
-        operator_code = phone[3:5]
+        operator_code = phone[5:7]
         if operator_code not in self.OPERATORS_CODES:
             raise forms.ValidationError("Непідтримуваний оператор мобільного зв'язку")
 

@@ -79,7 +79,7 @@ class Products(models.Model):
     material = models.ForeignKey(to=Material, on_delete=models.CASCADE, verbose_name='Матеріал')
     style = models.ForeignKey(to=Style, on_delete=models.CASCADE, verbose_name='Стиль')
     description = models.TextField(blank=True, null=True, verbose_name='Опис')
-    image = models.ImageField(upload_to='products_images', blank=True, null=True, verbose_name='Зображення в розмірі 600 X 450')
+    image = models.ImageField(upload_to='products_images', blank=True, null=True, verbose_name='Зображення в розмірі 1920 X 1080')
     price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2, verbose_name='Ціна')
     discount = models.DecimalField(default=0.0, max_digits=10, decimal_places=2, verbose_name='Знижка в %')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Кількість')
