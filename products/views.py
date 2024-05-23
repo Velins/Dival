@@ -56,8 +56,8 @@ def catalog(request, category_slug= None):
         product = product.order_by('-price') # Від дорогих до дешевих
     elif sort_option == '3':
         product = product.order_by('name')  # За назвою
-
-    paginator = Paginator(product, 4)
+    
+    paginator = Paginator(product, 8)
     current_page = paginator.page(int(page))
 
     color = Color.objects.all()  
@@ -92,7 +92,7 @@ def product(request, product_slug):
     product = Products.objects.get(slug = product_slug)
 
     context ={
-        'title' : 'DiVal - Товар',
+        'title' : product.name,
         'product' : product
     }  
     

@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+
 from django.db import transaction
 from django.forms import ValidationError
 from django.contrib import messages
@@ -7,6 +8,13 @@ from django.contrib import messages
 from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
 from carts.models import Cart
+
+
+from liqpay.liqpay import LiqPay
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse, HttpResponse
 
 @login_required
 def create_order(request):
@@ -52,8 +60,13 @@ def create_order(request):
                         # Вичистити кошик користувача
                         cart_items.delete()
 
-                        messages.success(request, 'Замовлення сформовано!')
-                        return redirect('user:profile')
+                        if order.payment_on_get :
+                            messages.success(request, 'Замовлення сформовано !')
+                            return redirect('users:profile')
+                        else :
+                            return redirect('orders:liqpay_checkout', order_id=order.id)
+
+                    
             except ValidationError as e:
                 messages.error(request, str(e))
                 return redirect('users:user_cart')
@@ -71,3 +84,51 @@ def create_order(request):
         'orders': True,
     }
     return render(request, 'orders/create_order.html', context=context)
+
+def liqpay_checkout(request, order_id):
+
+    order_items = OrderItem.objects.filter(order=order_id)
+    total_price = order_items.total_price()  # Викликаємо метод з QuerySet
+
+    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+
+    params = {
+        'action': 'pay',
+        'amount': str(total_price),
+        'currency': 'UAH',
+        'description': f'Order #{order_id}',
+        'order_id': str(order_id),
+        'version': '3',
+        'sandbox': 1,  # Увімкнути тестовий режим
+        'server_url': request.build_absolute_uri('/liqpay-callback/'),
+        'result_url': request.build_absolute_uri('/success/'),
+    }
+    
+    data = liqpay.cnb_data(params).decode('utf-8')  # Перетворюємо байтові дані у рядок
+    signature = liqpay.cnb_signature(params).decode('utf-8')  # Перетворюємо байтовий підпис у рядок
+
+    context = {
+        'title': 'Оплата',
+        'data': data, 
+        'signature': signature
+    }
+    return render(request, 'orders/checkout.html', context)
+
+@csrf_exempt
+def liqpay_callback(request):
+    data = request.POST.get('data')
+    signature = request.POST.get('signature')
+
+    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    is_valid = liqpay.verify_signature(signature, data)
+
+    if is_valid:
+        response_data = json.loads(liqpay.decode_data_from_str(data))
+        if response_data['status'] == 'success':
+            order_id = response_data['order_id']
+            order = Order.objects.get(id=order_id)
+            order.is_paid = True
+            order.save()
+            return HttpResponse(status=200)
+        
+    return HttpResponse(status=400)

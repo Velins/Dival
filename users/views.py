@@ -88,7 +88,10 @@ def profile (request):
     return render(request,'users/profile.html', context)   
 
 def users_carts(request):
-    return render(request, "users/users_cart.html")
+    context = {
+        'title' : 'Кошик'
+    }
+    return render(request, "users/users_cart.html", context)
 
 @login_required
 def orders (request):
@@ -113,5 +116,4 @@ def orders (request):
 @login_required
 def logout (request):
     auth.logout(request)
-    messages.success(request, "Ви вийшли з аккаунту!") 
     return redirect(reverse('main:index'))

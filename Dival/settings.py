@@ -152,3 +152,6 @@ INTERNAL_IPS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
+
+LIQPAY_PUBLIC_KEY = 'sandbox_i27296212843'
+LIQPAY_PRIVATE_KEY = 'sandbox_YjsH6XZKiZxiZidagPTo6w9hDe1hvp0SAoOWy0WE'

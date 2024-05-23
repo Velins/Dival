@@ -1,170 +1,157 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% load product_tags %}
-            {% block head_catalog %}
-            <div class="header-catalog p-3">
-              <div class="container-fluid">
-                  <div class="row text-center">
-                    {% tag_category as categories %}
-                    {% for category in categories %}
-                      <div class="col"><a href="{% url "catalog:index" category.slug %}">{{category.name}}</a></div>
-                    {% endfor %}
+
+{% block head_catalog %}
+  <div class="header-catalog p-3">
+    <div class="container-fluid">
+      <div class="row text-center">
+        {% tag_category as categories %}
+        {% for category in categories %}
+          <div class="col">
+            <a href="{% url 'catalog:index' category.slug %}">{{ category.name }}</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="carousel" class="carousel carousel-dark carousel-fade">
+    <div class="carousel-indicators">
+      {% for image in images %}
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for image in images %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ image.image.url }}" alt="{{ image.caption }}" />
+          {% if image.caption %}
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ image.caption }}</h5>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <section class="featured-products">
+    <div class="container-fluid">
+      <div class="row mb-5">
+        <div class="col-12">
+          <h3 class="section-title-featured"><span>Акційні товари</span></h3>
+        </div>
+      </div>
+      <div class="row">
+        {% for product in products %}
+          <div class="col-xxl-3 col-xl-4 col-md-6 mb-3">
+            <div class="product-card">
+              <div class="product-card-offer">
+                {% if product.discount %}
+                  <div class="offer-hit">SALE</div>
+                {% endif %}
+              </div>
+              <div class="product-thumb">
+                <a href="{% url 'catalog:product' product.slug %}">
+                  {% if product.image %}
+                    <img src="{{ product.image.url }}" />
+                  {% else %}
+                    <img src="{% static 'assets/img/image_not_found.png' %}" />
+                  {% endif %}
+                </a>
+              </div>
+              <div class="product-details">
+                <h4>
+                  <a href="{% url 'catalog:product' product.slug %}">
+                    {% if product.headline %}
+                      {{ product.headline }}
+                    {% else %}
+                      {{ product.name }}
+                    {% endif %}
+                  </a>
+                </h4>
+                <p class="product-excerpt">
+                  {% if product.bodyline %}
+                    {{ product.bodyline }}
+                  {% else %}
+                    {{ product.description }}
+                  {% endif %}
+                </p>
+                <div class="produc-bottom-details">
+                  <div class="product-price">
+                    {% if product.discount %}
+                      <small>{{ product.price }}</small>
+                      {{ product.sell_price }}
+                    {% else %}
+                      {{ product.price }}
+                    {% endif %}
+                    <div class="currency">ГРН</div>
                   </div>
+                  <div class="product-links">
+                    <a href="{% url 'cart:cart_add' %}" class="btn add-to-card" data-product-id="{{ product.id }}">
+                      {% csrf_token %}
+                      <img src="{% static 'assets/img/cart-solid.svg' %}" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            {% endblock%}
-            {% block content %}
-            <div id="carousel" class="carousel carousel-dark carousel-fade">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="d-none d-md-block active"  aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="d-none d-md-block" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" class="d-none d-md-block" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{% static "assets/img/slides/Slide1.jpg" %}" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{%static "assets/img/slides/Slide2.jpg" %}" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{% static "assets/img/slides/Slide3.jpg" %}" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-              <section class="featured-products">
-                <div class="container-fluid">
-                  <div class="row mb-5">
-                    <div class="col-12">
-                      <h3 class="section-title-featured"><span>Популярні товари</span></h3>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-3  col-sm-6 mb-3">
-                      <div class="product-card">
-                        <div class="product-card-offer">
-                          <div class="offer-hit">ХІТ</div>
-                        </div>
-                        <div class="product-thumb">
-                          <a href="product.html"><img src="{% static "assets/img/products/shafa1.jpg" %}"></a>
-                        </div>
-                        <div class="product-details">
-                          <h4>
-                            <a href="product.html">Product 1</a>
-                          </h4>
-                          <p class="product-excerpt">ibus recusandae nulla!</p>
-                          <div class="produc-bottom-details">
-                            <div class="product-price">5 200<div class="currency">ГРН</div></div>
-                            <div class="product-links">
-                              <a href="#" class="btn btn-outline"><img src="{%static "assets/img/cart-solid.svg" %}" width=35px></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-3  col-sm-6 mb-3">
-                      <div class="product-card">
-                        <div class="product-card-offer">
-                          <div class="offer-hit">ХІТ</div>
-                        </div>
-                        <div class="product-thumb">
-                          <a href="product.html"><img src="{%static "assets/img/products/shafa1.jpg" %}"></a>
-                        </div>
-                        <div class="product-details">
-                          <h4>
-                            <a href="product.html">Product 2</a>
-                          </h4>
-                          <p class="product-excerpt">ibus recusandae nulla!</p>
-                          <div class="produc-bottom-details">
-                            <div class="product-price">3 240<div class="currency">ГРН</div></div>
-                            <div class="product-links">
-                              <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}"></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-3  col-sm-6 mb-3">
-                      <div class="product-card">
-                        <div class="product-card-offer">
-                          <div class="offer-hit">ХІТ</div>
-                        </div>
-                        <div class="product-thumb">
-                          <a href="product.html"><img src="{%static "assets/img/products/shafa2.jpg" %}"></a>
-                        </div>
-                        <div class="product-details">
-                          <h4>
-                            <a href="product.html">Product 3</a>
-                          </h4>
-                          <p class="product-excerpt">ibus recusandae nulla!</p>
-                          <div class="produc-bottom-details">
-                            <div class="product-price">4 420<div class="currency">ГРН</div></div>
-                            <div class="product-links">
-                              <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}"></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-3  col-sm-6 mb-3">
-                      <div class="product-card">
-                        <div class="product-card-offer">
-                          <div class="offer-hit">ХІТ</div>
-                        </div>
-                        <div class="product-thumb">
-                          <a href="product.html"><img src="{% static "assets/img/products/shafa3.jpg" %}"></a>
-                        </div>
-                        <div class="product-details">
-                          <h4>
-                            <a href="product.html">Product 4</a>
-                          </h4>
-                          <p class="product-excerpt">ibus recusandae nulla!</p>
-                          <div class="produc-bottom-details">
-                            <div class="product-price">6 000<div class="currency">ГРН</div></div>
-                            <div class="product-links">
-                              <a href="#" class="btn btn-outline"><img src="{% static "assets/img/cart-solid.svg" %}"></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <section class="about-us-section">
-                <div class="container-fliud">
-                  <div class="row">
-                    <h3 class="section-title-about-us"><span>Про Dival</span></h3>
-                    <div class="col-xxl-6">
-                      <div class="about-us-text"><p>
-                        <p>Ласкаво просимо до меблевого центру <b>Dival</b> !</p>
-                        <b>НАШ МАГАЗИН</b> - це місце, де кожен може знайти ідеальні меблі для свого дому. 
-                        Ми знаємо, як важливо створити атмосферу затишку та комфорту в вашому житті, тому пропонуємо широкий вибір меблів для всіх кімнат вашого будинку.</p>
-                        <ul>
-                          <li><b>Розмаїття асортименту:</b> У нашому магазині ви знайдете все - від стильних та сучасних диванів та ліжок до практичних шаф-купе та кухонних гарнітурів. Ми пропонуємо різноманітні моделі, кольори та матеріали, щоб ви могли обрати те, що найкраще відповідає вашому смаку та інтер'єру.</li></br>
-                          <li><b>Висока якість:</b> Ми працюємо тільки з надійними та відомими виробниками меблів, які гарантують високу якість своїх продуктів. </li></br>
-                          <li><b>Доступні ціни:</b> Ми розуміємо, як важливо мати якісні меблі за доступною ціною. Тому ми пропонуємо конкурентоспроможні ціни на всі наші продукти.</li>
-                        </ul>
-                        <p>Приходьте до меблевого центру <b>Dival</b> і зробіть ваш дім ще затишнішим та стильнішим разом з нами!</p>
-                      </div>
-                    </div>
-                    <div class="col-xxl-6">
-                      <div class="about-us-photo"><img src="{% static "assets/img/Dival.jpg" %}" alt="Photo-Dival"></div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <section class="location">
-                <h3 class="section-title-location"><span>Місцерозташування</span></h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d440.67028569081094!2d26.620737541058975!3d51.33305898472395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDE5JzU5LjEiTiAyNsKwMzcnMTYuNiJF!5e0!3m2!1sru!2sua!4v1713285491332!5m2!1sru!2sua" width="100%" height="450" style="border-radius:1%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </section>
-            {% endblock%}
-       
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-us-section">
+    <div class="container-fluid">
+      <div class="row">
+        <h3 class="section-title-about-us"><span>Про Dival</span></h3>
+        <div class="col-xxl-6">
+          <div class="about-us-text">
+            <p>
+              Ласкаво просимо до меблевого центру <b>Dival</b>!
+            </p>
+            <p>
+              <b>НАШ МАГАЗИН</b> - це місце, де кожен може знайти ідеальні меблі для свого дому. Ми знаємо, як важливо створити атмосферу затишку та комфорту в вашому житті, тому пропонуємо широкий вибір меблів для всіх кімнат вашого будинку.
+            </p>
+            <ul>
+              <li>
+                <b>Розмаїття асортименту:</b> У нашому магазині ви знайдете все - від стильних та сучасних диванів та ліжок до практичних шаф-купе та кухонних гарнітурів. Ми пропонуємо різноманітні моделі, кольори та матеріали, щоб ви могли обрати те, що найкраще відповідає вашому смаку та інтер'єру.
+              </li>
+              <li>
+                <b>Висока якість:</b> Ми працюємо тільки з надійними та відомими виробниками меблів, які гарантують високу якість своїх продуктів.
+              </li>
+              <li>
+                <b>Доступні ціни:</b> Ми розуміємо, як важливо мати якісні меблі за доступною ціною. Тому ми пропонуємо конкурентоспроможні ціни на всі наші продукти.
+              </li>
+            </ul>
+            <p>
+              Приходьте до меблевого центру <b>Dival</b> і зробіть ваш дім ще затишнішим та стильнішим разом з нами!
+            </p>
+          </div>
+        </div>
+        <div class="col-xxl-6">
+          <div class="about-us-photo">
+            <img src="{% static 'assets/img/Dival.jpg' %}" alt="Photo-Dival" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="location">
+    <h3 class="section-title-location"><span>Місцерозташування</span></h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d440.67028569081094!2d26.620737541058975!3d51.33305898472395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTHCsDE5JzU5LjEiTiAyNsKwMzcnMTYuNiJF!5e0!3m2!1sru!2sua!4v1713285491332!5m2!1sru!2sua" width="100%" height="450" style="border-radius:1%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+{% endblock %}

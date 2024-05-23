@@ -55,19 +55,19 @@
                     <div class="row align-items-center">
                         <div class="col-6 col-lg-4">
                             <a href="{% url "main:index" %}" class="header-logo">Di Val</a>
-                            <a href="tel:+380000000000" class="header-logo-phone">+ 380000000000</a>
+                            <a href="tel:+380982380347" class="header-logo-phone">+ 38(098)238-03-47</a>
                         </div>               
                         <div class="col-6 col-lg-4 order-lg-2 cart-buttons text-end">
                             <a href="#" class="btn">
-                                <img src="{% static "assets/img/heart.svg" %}" width=35px>
+                                <img src="{% static "assets/img/heart.svg" %}" width="35px">
                                 <span class="badge text-bg-danger"></span>
                             </a>
                             <a href="{% url "user:user_cart" %}" class="btn">
-                                <img src="{% static "assets/img/cart.svg" %}" width=35px>
+                                <img src="{% static "assets/img/cart.svg" %}" width="35px">
                                 <span id="products-in-cart-count" class="badge text-bg-danger">{% if carts %}{{carts.total_quantity}}{% endif %}</span>
                               </a>
                             <a {% if user.is_authenticated %} href="{% url "user:profile" %}" {% else %} data-bs-target="#exampleModalToggle" data-bs-toggle="modal"{% endif %} class="btn">
-                                <img src="{% static "assets/img/user.svg" %}" width=35px>
+                                <img src="{% static "assets/img/user.svg" %}" width="35px">
                                 <span class="badge text-bg-danger">{% if user.is_authenticated %}{{user.first_name}} {{user.last_name}}{% else %}Авторизуватись{% endif %}</span>
                             </a>
                         </div>
@@ -81,7 +81,7 @@
                                               </button> 
                                         </div>
                                       </nav>
-                                    <input type="search" class="form-control" name="q" placeholder="Пошук..." aria-describedby="button-search">
+                                    <input type="text" class="form-control" name="q" placeholder="Пошук..." aria-describedby="button-search">
                                         <button class="btn btn-outline" type="submit" id="button-search">
                                             <img src="{%static "assets/img/search.svg"%}" width=24px>
                                         </button>
@@ -212,8 +212,8 @@
             <div class="col-xl-3 col-3 col-12">
               <h4>Контакти</h4>
               <ul class="contacts">
-                <li><a href="tel:+00">+380000000000</a></li>
-                <li><a href="tel:+380000000000">+380000000000</a></li>
+                <li><a href="tel:+38098238037">+38(098)238-03-47</a></li>
+                <li><a href="tel:+380686711329">+38(068)671-13-29</a></li>
               </ul>
             </div>
           </div>

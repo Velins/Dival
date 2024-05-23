@@ -1,18 +1,27 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+import random
+from products.models import Products
+from main.models import CarouselImage
 
-from products.models import Category
-
-# Create your views here.
 def index(request):
+    
+    product = Products.objects.filter(discount__gt=0)
+    random_products = random.sample(list(product), min(4, len(product)))
+
+    images = CarouselImage.objects.all()
 
     context ={
-        'title' : 'DiVal - Головна с    торінка',
+        'title' : 'DiVal - Головна сторінка',
+        'products' : random_products,
+        'images': images
     } 
+
     return render(request, 'main/index.html', context)
 
 def about(request):
+
     context ={
         'title' : 'DiVal - Про нас'
     } 
+
     return render(request, 'main/about.html', context)

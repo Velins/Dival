@@ -28,6 +28,7 @@ body
     display: flex;
     flex-direction: column;
 }
+
 main.main
 {
     flex: 1 1 auto;
@@ -47,12 +48,18 @@ img
 
 #notification
 {
+    font-size: 20px;
+    width: 450px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7); 
 }
+
 #jq-notification
 {
+    font-size: 20px;
+    width: 450px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7); 
 }
+
 .btn-close
 {
     --bs-btn-close-focus-shadow: white;
@@ -189,14 +196,16 @@ img
     padding-left: 30px;
     border-color: white;
 }
+
 .header-catalog
 {
     border-bottom: 3px solid var(--accent-color);
     display: flex;
     background-color: var(--bg-g-color);
-    font-size: 20px;
+    font-size: 22px;
     white-space: nowrap;
 }
+
 .header-catalog a
 {
     display: inline-block;
@@ -264,6 +273,7 @@ img
 /* ====================== HEADER RULSE =====================*/
 
 /* ====================== MAIN RULSE =====================*/
+
 /* ====================== CARUSEL RULSE =====================*/
 .carousel
 {
@@ -282,6 +292,13 @@ img
     max-width: 60%; 
 }
 
+/* ====================== CARUSEL RULSE =====================*/
+.about-us-text
+{
+    font-size: 18px;
+}
+/* ====================== ABOUT-US RULSE =====================*/
+/* ====================== ABOUT-US RULSE =====================*/
 /* ====================== CARUSEL RULSE =====================*/
 /* ====================== FEATURED RULSE =====================*/
 .featured-products
@@ -362,6 +379,7 @@ img
 
 .product-details .btn
 {
+    padding-left: 30px;
     transition: transform 0.3s ease;
     border-color: var(--bg-color);
 }
@@ -419,7 +437,7 @@ img
     color: black;
     font-weight: 400;
     text-decoration: line-through;
-    font-size: 20px;
+    font-size: 18px;
     margin-right: 10px;
 }
 
@@ -1208,7 +1226,27 @@ img
     background-color: var(--bg-g-color);
 }
 /* ====================== ORDERS RULSE =====================*/
+/* ====================== PAYMENT RULSE ====================*/
 
+.section-title-checkout
+{
+    white-space: nowrap;
+    margin-left: 200px;
+    margin-bottom: 30px;
+    text-decoration: underline; 
+}
+
+.liqpay_checkout{
+    margin-bottom: 200px;
+}
+
+.liqpay_checkout .btn {
+    padding: 2px;
+    color: white;
+    width: 250px;
+}
+
+/* ====================== PAYMENT RULSE =====================*/
 /* ====================== ORDER RULSE =====================*/
 
 /* ====================== MAIN RULSE =====================*/
@@ -1549,7 +1587,7 @@ img
 
 @media (max-width:992px)
 {
-    .product-price
+    .product-price,.section-title-checkout
 {
     margin-left: 0px;
 }
