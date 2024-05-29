@@ -1,4 +1,5 @@
 {% load static %}
+{% url 'login' as login_url %}
 {% load product_tags %}
 {% load carts_tags %}
 {% user_carts request as carts %}
@@ -66,7 +67,7 @@
                                 <img src="{% static "assets/img/cart.svg" %}" width="35px">
                                 <span id="products-in-cart-count" class="badge text-bg-danger">{% if carts %}{{carts.total_quantity}}{% endif %}</span>
                               </a>
-                            <a {% if user.is_authenticated %} href="{% url "user:profile" %}" {% else %} data-bs-target="#exampleModalToggle" data-bs-toggle="modal"{% endif %} class="btn">
+                            <a {% if user.is_authenticated %} href="{% url "user:profile" %}" {% else %} data-bs-target="#ModalToggle" data-bs-toggle="modal"{% endif %} class="btn">
                                 <img src="{% static "assets/img/user.svg" %}" width="35px">
                                 <span class="badge text-bg-danger">{% if user.is_authenticated %}{{user.first_name}} {{user.last_name}}{% else %}Авторизуватись{% endif %}</span>
                             </a>
@@ -137,11 +138,11 @@
         </header>
         <main class="main">
           {% include "includes/notifications.html" %}
-          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+          <div class="modal fade" id="ModalToggle" aria-hidden="true" aria-labelledby="ModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title" id="exampleModalToggleLabel">Авторизація</h1>
+                  <h1 class="modal-title" id="ModalToggleLabel">Авторизація</h1>
                   <button type="button" class="btn btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -171,13 +172,13 @@
                     <div class="lg-3 text-center">
                       <button type="submit" class="btn">Авторизуватись</button>
                     </div>
-                    <div class="another-login text-center">
-                    <p>АБО АВТОРИЗУЙТЕСЬ ЧЕРЕЗ</p>
-            
-                    <button type="submit" class="btn auth">
-                      <img src={% static "assets/img/google.svg" %} alt="" width="20px"> Google
-                    </button>
-                  </div> 
+                    {% comment %} <div class="another-login text-center">
+                      <p>АБО АВТОРИЗУЙТЕСЬ ЧЕРЕЗ</p>
+              
+                      <button type="submit" class="btn auth">
+                        <img src={% static "assets/img/google.svg" %} alt="" width="20px"> Google
+                      </button>
+                  </div>  {% endcomment %}
                   </form>
                 </div>
               </div>

@@ -9,7 +9,7 @@
             <nav class="breadcrums">
                 <ul>
                     <li><a href="{% url "main:index" %}">Головна</a></li>
-                    <li>{{category_name}}</li>
+                    <li>{{ category_name }}</li>
                 </ul>
             </nav>
         </div>
@@ -25,7 +25,7 @@
         <div class="collapse collapse-filters" id="collapseFilters">
           <div class="filter-block">
             <h5 class="section-title-filter"><span>Колір корпусу</span></h5>
-            <form id="filterForm" action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{%endif%}" method="get">
+            <form id="filterForm" action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get">
               <!-- Фільтр за кольорами -->
               <div>
                   {% for color in colors %}
@@ -33,10 +33,10 @@
                       <div>
                         <input class="form-check-input" type="checkbox" name="color[]" value="{{ color.id }}" {% if color.id in selected_colors %} checked {% endif %}>
                         {% if request.GET.q %}
-                        <input type="hidden" name="q" value="{{request.GET.q}}">
-                        {% endif %} 
+                        <input type="hidden" name="q" value="{{ request.GET.q }}">
+                        {% endif %}
                           <label class="form-check-label" for="flexCheckDefault">
-                              {{ color.name }}  
+                              {{ color.name }}
                           </label>
                       </div>
                       {% for item in color_counts %}
@@ -55,7 +55,7 @@
                       <div>
                         <input class="form-check-input" type="checkbox" name="material[]" value="{{ material.id }}" {% if material.id in selected_materials %} checked {% endif %}>
                           <label class="form-check-label" for="flexCheckDefault">
-                              {{ material.name }}  
+                              {{ material.name }}
                           </label>
                       </div>
                       {% for item in material_counts %}
@@ -73,62 +73,24 @@
                     <div>
                       <input class="form-check-input" type="checkbox" name="style[]" value="{{ style.id }}" {% if style.id in selected_styles %} checked {% endif %}>
                         <label class="form-check-label" for="flexCheckDefault">
-                            {{ style.name }}  
+                            {{ style.name }}
                         </label>
                     </div>
                     {% for item in style_counts %}
                       {% if item.style__name == style.name %}
-                          <span class="badge border rounded-0">{{ item.total }}</span>
+                          <span class="badge border rounded-0">{{ item.total }}
+                          </span>
                       {% endif %}
                     {% endfor %}
                 </div>
                 {% endfor %}
             </div>
               <!-- Кнопка підтвердження -->
-              <button type="submit" id="submitButton" class="btn btn-danger" style="display: none;">Підтвердити</button>
+              <div class="d-flex justify-content-center">
+              <button type="submit" id="submitButton" class="btn confirm-btn">Підтвердити</button>
+            </div>
           </form>
           </div>
-          {% comment %} <div class="filter-block">
-            <h5 class="section-title-filter"><span>Стиль</span></h5>
-            <form action="">
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="loft">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Лофт  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="modern">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Модерн  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="minimalism">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Мінімалізм  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-              <div class="form-check d-flex justify-content-between">  
-                <div>
-                  <input class="form-check-input" type="checkbox" value="" id="Kid">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Дитячий  
-                  </label>
-                </div>
-                <span class="badge border rounded-0">0</span>
-              </div>
-            </form>
-          </div> {% endcomment %}
         </div>
       </div>
     </div>
@@ -136,8 +98,8 @@
         <div class="row">
           <div class="col-12">
             <h2 class="section-title-catalog"><span>
-              {% if  request.GET.q %} Результати по запиту "{{request.GET.q}}"
-              {% if  not products %} - По запиту нічого не знайдено 
+              {% if request.GET.q %} Результати по запиту "{{ request.GET.q }}"
+              {% if not products %} - По запиту нічого не знайдено 
               {% endif %}
               {% endif %}</span></h2>
           </div>
@@ -145,30 +107,43 @@
       <div class="row">
         <div class="col-12 d-flex align-items-center">
           <form id="sortForm" action="{% url 'catalog:index' slug_url %}" method="GET">
+          <!-- Приховані поля для фільтрів -->
+          {% for color in selected_colors %}
+          <input type="hidden" name="color[]" value="{{ color }}">
+          {% endfor %}
+          {% for material in selected_materials %}
+          <input type="hidden" name="material[]" value="{{ material }}">
+          {% endfor %}
+          {% for style in selected_styles %}
+          <input type="hidden" name="style[]" value="{{ style }}">
+          {% endfor %}
+          {% if request.GET.q %}
+          <input type="hidden" name="q" value="{{ request.GET.q }}">
+          {% endif %}
           <select id="sortOption" name="sort_option" class="form-select m-3">
             <option value="">Сортувати в категорії :</option>
-            <option value="1{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">Від дешевих до дорогих</option>
-            <option value="2{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">Від дорогих до дешевих</option>
-            <option value="3{% if 'color' in request.GET %}&amp;color={{ request.GET.color|urlencode }}{% endif %}">За назвою</option>
+            <option value="1" {% if request.GET.sort_option == '1' %} selected {% endif %}>Від дешевих до дорогих</option>
+            <option value="2" {% if request.GET.sort_option == '2' %} selected {% endif %}>Від дорогих до дешевих</option>
+            <option value="3" {% if request.GET.sort_option == '3' %} selected {% endif %}>За назвою</option>
           </select>
         </form>
-        <button type="button" class="btn btn-danger" id="clearFiltersButton">Очистити</button>
+        <button type="button" class="btn btn-danger clear-filters" id="clearFiltersButton">Очистити</button>
         </div>
       </div>
       <div class="row">
-        {% for product in products%}
+        {% for product in products %}
         <div class="col-xxl-3 col-xl-4 col-md-6 mb-3">
           <div class="product-card">
             <div class="product-card-offer">
-              {% if product.discount  %}
+              {% if product.discount %}
               <div class="offer-hit">SALE</div>
               {% endif %}
             </div>
             <div class="product-thumb">
               <a href="{% url "catalog:product" product.slug %}">
-                {% if  product.image %}
-              <img src="{{ product.image.url}}">
-              {%else%}
+                {% if product.image %}
+              <img src="{{ product.image.url }}">
+              {% else %}
               <img src="{% static "assets/img/image_not_found.png" %}">
               {% endif %}
             </a>
@@ -177,31 +152,30 @@
               <h4>
                 <a href="{% url "catalog:product" product.slug %}">
                   {% autoescape off %}
-                    {% if product.headline %}{{product.headline}}
-                    {% else %}{{product.name}}
+                    {% if product.headline %}{{ product.headline }}
+                    {% else %}{{ product.name }}
                     {% endif %}</a>
                   {% endautoescape %}
               </h4>
               <p class="product-excerpt">
                 {% autoescape off %}
-                    {% if product.bodyline %}{{product.bodyline}}
-                    {% else %}{{product.description}}
+                    {% if product.bodyline %}{{ product.bodyline }}
+                    {% else %}{{ product.description }}
                     {% endif %}
                 {% endautoescape %}
-                
               </p>
               <div class="produc-bottom-details">
                 <div class="product-price">
-                  {% if product.discount  %}
-                    <small>{{product.price}}</small> 
-                           {{product.sell_price}}
+                  {% if product.discount %}
+                    <small>{{ product.price }}</small> 
+                           {{ product.sell_price }}
                   {% else %}
-                         {{product.price}}
+                         {{ product.price }}
                   {% endif %}
                   <div class="currency">ГРН</div>
                 </div>
                 <div class="product-links">
-                  <a href="{% url "cart:cart_add" %}" class="btn add-to-card" data-product-id="{{product.id}}">{% csrf_token %}<img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
+                  <a href="{% url "cart:cart_add" %}" class="btn add-to-card" data-product-id="{{ product.id }}">{% csrf_token %}<img src="{% static "assets/img/cart-solid.svg" %}" width=35px></a>
                 </div>
               </div>
             </div>
@@ -222,10 +196,10 @@
               {% for page in products.paginator.page_range %}
               {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
               <li class="page-item {% if products.number == page %} active {% endif %}">
-                <a class="page-link" href="?page={{ page }}{% if query_params %}&{{ query_params }}{% endif %}">{{page}}</a>
+                <a class="page-link" href="?page={{ page }}{% if query_params %}&{{ query_params }}{% endif %}">{{ page }}</a>
               </li>
               {% endif %}
-              {% endfor %}  
+              {% endfor %}
 
               <li class="page-item {% if not products.has_next %} disabled {% endif %}">
                 <a class="page-link" href="{% if products.has_next %}?page={{ products.next_page_number }}{% if query_params %}&{{ query_params }}{% endif %}{% else %}#{% endif %}">>></a>
@@ -238,4 +212,4 @@
     </div>
   </div>
 </div>
-{% endblock%}
+{% endblock %}

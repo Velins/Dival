@@ -58,7 +58,7 @@ class Style(models.Model):
         return self.name
     
 class Category(models.Model):
-    id = models.CharField(primary_key=True,max_length=7, unique=True, verbose_name='ID')
+    id = models.CharField(primary_key=True,max_length=7, unique=True, validators=[validate_category_id], verbose_name='ID')
     name = models.CharField(max_length=150, unique=True, verbose_name='Назва')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
 

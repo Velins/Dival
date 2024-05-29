@@ -656,7 +656,6 @@ img
 
 .sidebar .collapse-filters-btn
 {
-
     font-size: 20px;
     color: var(--bg-color);
     background-color: var(--accent-color);
@@ -666,6 +665,40 @@ img
 {
     margin-right: 75px;
 }
+
+.confirm-btn
+{
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    width: 200px;
+}
+
+.confirm-btn:hover
+{
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
+.clear-filters
+{
+   
+    display: none;
+    text-align: center;
+    color: var(--bg-color);
+    background-color: var(--text-color);
+
+}
+
+.clear-filters:hover
+{
+    border-color: var(--bg-color);
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
 /* ====================== CATALOG RULSE =====================*/
 
 
@@ -990,7 +1023,7 @@ img
     padding: 20px 30px;
     border-radius: 10px;
     border: 2px solid #eb1b1b;
-    margin-bottom: 10px;
+    margin-bottom: 400px;
 }
 
 .sidebar-profile h1
@@ -999,6 +1032,7 @@ img
     font-size: 30px;
     border-bottom: 2px solid var(--accent-color);
 }
+
 .sidebar-profile ul
 {
     margin-top: 30px;
@@ -1034,17 +1068,18 @@ img
 {   
     border-radius: 10px;
     border: 2px solid #eb1b1b;
-    margin-bottom: 300px;
 }
 
 .personal-data
 {
     padding: 20px;
 }
+
 .personal-data input
 {
     font-size: 19px;
 }
+
 .personal-data .form-label
 {
     transition: transform 0.3s ease; 
@@ -1069,12 +1104,28 @@ img
 .personal-data .btn
 {
     margin-top: 30px;
+    margin-left: 10px;
     width: 200px;
     font-size: 20px;
     background-color: var(--text-color);
     color:#fff;
     transition: transform 0.3s ease; 
 }
+
+.personal-data .btn:hover
+{
+    transform: scale(1.1);
+}
+
+.section-title-orders
+{
+    white-space: wrap;
+    font-size: 30px;
+    padding: 10px;
+    border-bottom: 3px solid var(--accent-color);
+    margin-bottom: 30px;
+}
+
 /* ====================== PROFILE RULSE =====================*/
 
 /* ====================== ORDER RULSE =====================*/
@@ -1133,7 +1184,7 @@ img
 {
     margin-top: 30px;
     font-size: 20px;
-    color: white;
+    color: var(--bg-colors);
     background-color: var(--text-color);
     width: 50%;
 } 
@@ -1608,17 +1659,16 @@ img
 
 @media (max-width:600px)
 {
-    .section-title-featured, 
-    .section-title-about-us,
-    .section-title-location
-{
-    font-size: 20px;
-}
+        .section-title-featured, 
+        .section-title-about-us,
+        .section-title-location
+    {
+        font-size: 20px;
+    }
 }
 
 @media (max-width:576px)
 {
-    
     .header-logo
     {
         font-size: 60px;
@@ -1636,6 +1686,18 @@ img
     .carousel img
     {
     max-width: 100%;
+    }
+    .sidebar-profile
+    {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width:490px)
+{
+    .personal-data .btn
+    {
+        width: 100%;
     }
 }
 

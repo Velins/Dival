@@ -9,8 +9,10 @@ from django.db.models import Prefetch
 from users.forms import UserLoginForm, UserRegistrationForm, ProfileForm
 from carts.models import Cart
 from orders.models import Order, OrderItem
+from django.urls import resolve
 
 def login(request):
+
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -40,9 +42,10 @@ def login(request):
 
     context = {
         'title': 'Логін',
-        'form': form
+        'form': form,
     }
-    return redirect(request.META['HTTP_REFERER'])
+
+    return render(request,'users/login.html', context) 
 
 
 def registration (request):
@@ -64,9 +67,15 @@ def registration (request):
     else:
         form = UserRegistrationForm()
 
+    if request.path == 'user/login/':
+        is_login_page = True
+    else:
+        is_login_page = False
+    
     context = {
         'title' : 'Реєстрація',
-        'form' : form
+        'form' : form,
+        'is_login_page' : is_login_page
     }
     return render(request,'users/registration.html', context)
 
@@ -117,3 +126,4 @@ def orders (request):
 def logout (request):
     auth.logout(request)
     return redirect(reverse('main:index'))
+

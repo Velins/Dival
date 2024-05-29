@@ -2,6 +2,11 @@ from django import forms
 from users.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
+# views.py
+from django.contrib import messages
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
 class UserLoginForm(AuthenticationForm):
     class Meta:
             model = User
@@ -38,3 +43,11 @@ class ProfileForm(UserChangeForm):
         last_name = forms.CharField()
         phone = forms.CharField()
         email = forms.CharField()
+
+class CustomPasswordChangeView(PasswordChangeView):
+
+    success_url = reverse_lazy('user:profile')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Ваш пароль успішно змінено.')
+        return super().form_valid(form)

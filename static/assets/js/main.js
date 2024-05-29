@@ -251,14 +251,23 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     }
 
+    const hasFilters = window.location.search.includes('color') || window.location.search.includes('material') || window.location.search.includes('style') || window.location.search.includes('sort_option');
+    
+    if (hasFilters) {
+        // Якщо є параметри, показуємо кнопку "Очистити"
+        clearFiltersButton.style.display = 'block';
+    } else {
+        // Якщо немає параметрів, ховаємо кнопку "Очистити"
+        clearFiltersButton.style.display = 'none';
+    }
+    
     if (clearFiltersButton) {
     // Обробник події для очищення фільтрів
     clearFiltersButton.addEventListener('click', function() {
         window.history.replaceState({}, document.title, window.location.pathname);
         window.location.reload();
     });
-    }   
-
+    }
 
 });
 
@@ -295,7 +304,6 @@ if (element) {
     const mask = IMask(element, maskOptions);
 }
 
-    // Інші обробники подій...
     const maxLength = 20; // Максимальна кількість символів перед скороченням
     const elements = document.querySelectorAll(".product-order-name");
 

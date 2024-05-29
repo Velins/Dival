@@ -14,7 +14,7 @@ from liqpay.liqpay import LiqPay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 
 @login_required
 def create_order(request):
@@ -60,11 +60,12 @@ def create_order(request):
                         # Вичистити кошик користувача
                         cart_items.delete()
 
-                        if order.payment_on_get :
+                        if order.payment_on_get == '0':
+                            return redirect('orders:liqpay_checkout', order_id=order.id)
+                        else :
                             messages.success(request, 'Замовлення сформовано !')
                             return redirect('users:profile')
-                        else :
-                            return redirect('orders:liqpay_checkout', order_id=order.id)
+                            
 
                     
             except ValidationError as e:
@@ -85,6 +86,7 @@ def create_order(request):
     }
     return render(request, 'orders/create_order.html', context=context)
 
+@login_required
 def liqpay_checkout(request, order_id):
 
     order_items = OrderItem.objects.filter(order=order_id)
@@ -101,7 +103,7 @@ def liqpay_checkout(request, order_id):
         'version': '3',
         'sandbox': 1,  # Увімкнути тестовий режим
         'server_url': request.build_absolute_uri('/liqpay-callback/'),
-        'result_url': request.build_absolute_uri('/success/'),
+        'result_url': request.build_absolute_uri('/user/orders/'),
     }
     
     data = liqpay.cnb_data(params).decode('utf-8')  # Перетворюємо байтові дані у рядок

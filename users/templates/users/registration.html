@@ -48,7 +48,7 @@
 
                 <div class="lg-3">
                   <label for="id_last_name" class="form-label">Прізвище</label>
-                  <input type="text" class="form-control" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" name="last_name" id="id_last_name" placeholder="Введіть Прізвище" required>
+                  <input type="text" class="form-control" value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}" name="last_name" id="id_last_name" placeholder="Введіть Прізвище" >
                   {% if form.last_name.errors %}
                   <div class="alert alert-danger" role="alert">
                     {{form.last_name.errors}}
