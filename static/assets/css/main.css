@@ -297,9 +297,6 @@ img
 {
     font-size: 18px;
 }
-/* ====================== ABOUT-US RULSE =====================*/
-/* ====================== ABOUT-US RULSE =====================*/
-/* ====================== CARUSEL RULSE =====================*/
 /* ====================== FEATURED RULSE =====================*/
 .featured-products
 {
@@ -1298,7 +1295,69 @@ img
 }
 
 /* ====================== PAYMENT RULSE =====================*/
-/* ====================== ORDER RULSE =====================*/
+
+/* ====================== RESET-PAGE RULSE =====================*/
+.password-reset
+{
+    align-items: left;
+    margin-bottom: 300px;
+    border: 2px solid #eb1b1b;
+    border-radius: 10px;
+}
+
+.password-reset h1
+{
+    text-decoration: underline;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.password-reset .btn
+{
+    margin-top: 30px;
+    margin-left: 10px;
+    font-size: 17px;
+    background-color: var(--text-color);
+    color:#fff;
+    transition: transform 0.3s ease; 
+}
+
+.password-reset label
+{
+    font-size: 20px;
+}
+
+.password-reset .btn:hover
+{
+    transform: scale(1.1);
+}
+
+.reset-done
+{
+    font-size: 25px;
+    text-align: justify;
+    text-decoration: underline;
+    margin-bottom: 300px;
+}
+
+.reset-complete
+{
+    margin-bottom: 300px;
+    font-size: 25px;
+}
+
+.reset-complete a
+{
+    color: var(--contrast-color);
+    text-decoration: underline;
+}
+
+.reset-complete a:hover
+{
+    text-decoration: none;
+}
+/* ====================== RESET-PAGE RULSE =====================*/
+
 
 /* ====================== MAIN RULSE =====================*/
 
@@ -1336,6 +1395,7 @@ img
 
 .footer ul
 {
+    text-decoration: underline;
     list-style-type: none;
     margin-top: 30px;
 }
@@ -1401,9 +1461,6 @@ img
 {
     max-width: 80%;
 }
-
-
-
 
 /* ====================== CART RULSE =====================*/
 .product-cart
@@ -1626,6 +1683,8 @@ img
     }
     .footer ul
     {
+
+    
         display: flex;
         justify-content: center;
     }
@@ -1669,6 +1728,11 @@ img
 
 @media (max-width:576px)
 {
+    .reset-done
+    {
+        font-size: 19px;
+        margin-bottom: 100px;
+    }
     .header-logo
     {
         font-size: 60px;
@@ -1717,9 +1781,7 @@ img
 
     .footer
     {
-
         font-size: 15px;
-
     }
 }
 

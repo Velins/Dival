@@ -47,56 +47,57 @@
       <div class="col-lg-8 col-sm-7">
         <div class="section-title-orders">Ваші замовлення</div>
         {% if orders %}
-        <div class="orders-content">
-          <div class="accordion" id="accordionExample">
-            {% for order in orders %}
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{ order.id }}">
-                  <button class="accordion-button {% if order != orders.0 %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
-                    Замовлення <strong class="mx-2">{{ order.id }}</strong>
-                    <div class="d-none d-lg-block"> - {{ order.created_timestamp }} </div> | Статус:<strong class="mx-2">{{order.status}}</strong>
-                  </button>
-                </h2>
-                <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>Товар</th>
-                            <th>Кількість</th>
-                            <th>Ціна (за од.)</th>
-                            <th>Адрес</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+          <div class="orders-content">
+            <div class="accordion" id="accordionExample">
+              {% for order in orders %}
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading{{ order.id }}">
+                    <button class="accordion-button {% if order != orders[0] %}{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                      Замовлення <strong class="mx-2">{{ order.id }}</strong>
+                      <div class="d-none d-lg-block">- {{ order.created_timestamp }}</div>| Статус:<strong class="mx-2">{{ order.status }}</strong>
+                    </button>
+                  </h2>
+                  <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders[0] %}{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="table-responsive">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Товар</th>
+                              <th>Кількість</th>
+                              <th>Ціна (за од.)</th>
+                              <th>Адрес</th>
+                            </tr>
+                          </thead>
+                          <tbody>
                             {% for item in order.orderitem_set.all %}
-                          <tr>
-                            <td>
-                              <a href="{% url 'products:product' item.product.slug %}">{{ item.product.name }}</a>
-                            </td>
-                            <td>{{ item.quantity }}</td>
-                            <td>{{ item.price }}</td>
-                            <td>{{ item.order.delivery_address }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="orders-amount d-flex justify-content-between">
-                      <p>
-                        <strong>Всього :</strong>
-                      </p>
-                      <p>
-                        <strong>{{ item.products_price }} грн</strong>
-                        {% endfor %}
-                      </p>
+                              <tr>
+                                <td>
+                                  <a href="{% url 'products:product' item.product.slug %}">{{ item.product.name }}</a>
+                                </td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                                <td>{{ item.order.delivery_address }}</td>
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="orders-amount d-flex justify-content-between">
+                        <p>
+                          <strong>Всього :</strong>
+                        </p>
+                        <p>
+                          <strong>{{ item.products_price }} грн</strong>
+                          {% endfor %}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           </div>
-        </div>
         {% endif %}
       </div>
     </div>

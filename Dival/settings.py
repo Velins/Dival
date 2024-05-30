@@ -153,5 +153,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'lobchuk45@gmail.com'
+EMAIL_HOST_PASSWORD = 'ybltmfxpxophbhmt'
+
 LIQPAY_PUBLIC_KEY = 'sandbox_i27296212843'
 LIQPAY_PRIVATE_KEY = 'sandbox_YjsH6XZKiZxiZidagPTo6w9hDe1hvp0SAoOWy0WE'
+
