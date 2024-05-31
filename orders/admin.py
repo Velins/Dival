@@ -3,7 +3,7 @@ from orders.models import Order, OrderItem
 # Register your models here.
 
 # admin.site.register(Order)
-# admin.site.register(OrderItem)
+admin.site.register(OrderItem)
 
 class OrderItemTabulareAdmin(admin.TabularInline):
     model = OrderItem
@@ -15,14 +15,13 @@ class OrderItemTabulareAdmin(admin.TabularInline):
     extra = 0
 
 
-@admin.register(OrderItem)
-class OrderItemAdmin(admin.ModelAdmin):
-    list_display = "order", "product", "name", "price", "quantity"
-    search_fields = (
-        "order",
-        "product",
-        "name",
-    )
+# @admin.register(OrderItem)
+# class OrderItemAdmin(admin.ModelAdmin):
+#     list_display = "order", "product", "name", "price", "quantity"
+#     search_fields = (
+#         "order",
+#         "product",
+#     )
 
 
 class OrderTabulareAdmin(admin.TabularInline):
