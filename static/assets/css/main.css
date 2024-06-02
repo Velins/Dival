@@ -292,6 +292,16 @@ img
     max-width: 60%; 
 }
 
+.modal-img img
+{
+    max-width: 100%;
+}
+
+.modal-img .modal-header
+{
+    border-color: white;
+}
+
 /* ====================== CARUSEL RULSE =====================*/
 .about-us-text
 {
@@ -704,6 +714,17 @@ img
 {
     max-width: 100%;
 }
+
+.galery img
+{
+    cursor: pointer;
+}
+
+.galery .carousel-indicators
+{
+    bottom: -50px;
+}
+
 .section-title-product-name
 {
     border-bottom: 3px solid var(--accent-color);

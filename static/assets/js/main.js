@@ -271,6 +271,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+    var modalImage = document.getElementById('modalImage');
+
+    document.querySelectorAll('.carousel-image').forEach(function (image) {
+      image.addEventListener('click', function () {
+        modalImage.src = this.src;
+        modal.show();
+      });
+    });
+  });
+
 
 // Для форм Авторизації та Реєстрації 
 
