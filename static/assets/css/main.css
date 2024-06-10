@@ -1032,6 +1032,14 @@ img
 {
     padding-bottom: 5px;
 }
+
+.page-register .alert-danger
+{
+    border-color: white;
+    color: #dc3545;
+    background-color: #f8d7da;
+    border-radius: 3px;
+}
 /* ====================== AUTHORIZATION RULSE =====================*/
 
 /* ====================== PROFILE RULSE =====================*/
@@ -1590,7 +1598,7 @@ img
 /* ====================== ABOUT-US RULSE =====================*/
 .about-us
 {
-    padding: 80px 130px;
+    padding: 40px 130px;
 }
 
 .about-us h3
@@ -1599,6 +1607,34 @@ img
 }
 /* ====================== ABOUT-US RULSE =====================*/
 
+/* ====================== Payment-and-delivery RULSE =====================*/
+.pay_delivery
+{
+    padding: 40px 130px;
+}
+
+.pay_delivery h2
+{
+    padding-top: 20px;
+}
+/* ====================== Payment-and-delivery RULSE =====================*/
+
+/* ====================== СOOPERATION RULSE =====================*/
+
+.cooperation
+{
+    padding: 40px 130px;
+}
+
+.cooperation h2 
+{
+    padding-top: 20px;
+}
+
+/* ====================== СOOPERATION RULSE =====================*/
+
+
+/* ====================== ABOUT-US RULSE =====================*/
 
 @media (max-width:1500px)
 {

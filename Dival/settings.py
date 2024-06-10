@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'users',
     'main',
     'products',
-    'orders'
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -159,7 +159,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lobchuk45@gmail.com'
-EMAIL_HOST_PASSWORD = 'ybltmfxpxophbhmt'
+EMAIL_HOST_PASSWORD = 'lxhgemqsnmnwyenj'
 
 LIQPAY_PUBLIC_KEY = 'sandbox_i27296212843'
 LIQPAY_PRIVATE_KEY = 'sandbox_YjsH6XZKiZxiZidagPTo6w9hDe1hvp0SAoOWy0WE'

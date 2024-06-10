@@ -193,8 +193,6 @@ $(document).ready(function() {
     });
 });
 
-
-
 // Отримуємо всі посилання з класом animate-link
 const links = document.querySelectorAll('.header-catalog a');
 
@@ -281,8 +279,18 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.show();
       });
     });
+
   });
 
+
+
+document.getElementById('search-form').addEventListener('submit', function(event) {
+    var searchInput = document.getElementById('search-input').value.trim();
+    if (!searchInput) {
+        event.preventDefault(); // Зупиняє відправку форми
+        alert('Введіть пошуковий запит перед відправкою.');
+    }
+});
 
 // Для форм Авторизації та Реєстрації 
 

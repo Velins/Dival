@@ -99,8 +99,7 @@
           <div class="col-12">
             <h2 class="section-title-catalog"><span>
               {% if request.GET.q %} Результати по запиту "{{ request.GET.q }}"
-              {% if not products %} - По запиту нічого не знайдено 
-              {% endif %}
+              {% if not products %} - По запиту нічого не знайдено {% endif %}
               {% endif %}</span></h2>
           </div>
         </div>

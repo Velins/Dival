@@ -29,8 +29,8 @@
                                 <a href="{% url "main:index" %}">Головна</a>
                                 <a href="{% url "main:about" %}">Про нас</a>
                                 <a id="footer">Контакти</a>
-                                <a href="#">Оплата і доставка</a>
-                                <a href="#">Гарантії</a>
+                                <a href="{% url "main:payment_and_delivery" %}">Оплата і доставка</a>
+                                <a href="{% url "main:cooperation" %}">Гарантії</a>
                             </div>
                         </div>
                         <div class="col-xl-4 text-center">
@@ -59,10 +59,10 @@
                             <a href="tel:+380982380347" class="header-logo-phone">+ 38(098)238-03-47</a>
                         </div>               
                         <div class="col-6 col-lg-4 order-lg-2 cart-buttons text-end">
-                            <a href="#" class="btn">
+                            {% comment %} <a href="#" class="btn">
                                 <img src="{% static "assets/img/heart.svg" %}" width="35px">
                                 <span class="badge text-bg-danger"></span>
-                            </a>
+                            </a> {% endcomment %}
                             <a href="{% url "user:user_cart" %}" class="btn">
                                 <img src="{% static "assets/img/cart.svg" %}" width="35px">
                                 <span id="products-in-cart-count" class="badge text-bg-danger">{% if carts %}{{carts.total_quantity}}{% endif %}</span>
@@ -73,7 +73,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4  order-lg-1 text-end">
-                            <form action="{% url "catalog:search"  %}" method="GET">
+                            <form  id="search-form" action="{% url "catalog:search"  %}" method="GET">
                                 <div class="input-group">
                                     <nav class="navbar">
                                         <div class="container-fluid">
@@ -82,7 +82,7 @@
                                               </button> 
                                         </div>
                                       </nav>
-                                    <input type="text" class="form-control" name="q" placeholder="Пошук..." aria-describedby="button-search">
+                                    <input type="text" class="form-control" id="search-input" name="q" placeholder="Пошук..." aria-describedby="button-search">
                                         <button class="btn btn-outline" type="submit" id="button-search">
                                             <img src="{%static "assets/img/search.svg"%}" width=24px>
                                         </button>
@@ -120,13 +120,10 @@
                               <a class="nav-link" href="{% url "main:about" %}">Про нас</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Контакти</a>
+                                <a class="nav-link" href="{% url "main:payment_and_delivery" %}">Оплата і доставка</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Оплата і доставка</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Гарантії</a>
+                                <a class="nav-link" href="{% url "main:cooperation" %}">Гарантії</a>
                             </li>
                           </ul>
                         </div>
@@ -193,7 +190,7 @@
               <div class="col-xl-3 col-3 col-12">
               <h4>Інформація</h4>
               <ul class="information">
-                <li><a href="">Доставка</a></li>
+                <li><a href="{% url "main:payment_and_delivery" %}">Доставка</a></li>
                 <li><a href="">Умови співпраці</a></li>
               </ul>
             </div>

@@ -25,3 +25,19 @@ def about(request):
     } 
 
     return render(request, 'main/about.html', context)
+
+def payment_and_delivery(request):
+
+    context ={
+        'title' : 'DiVal - Оплата і доставка'
+    } 
+
+    return render(request, 'main/payment_and_delivery.html', context)
+
+def cooperation(request):
+
+    context ={
+        'title' : 'DiVal - Умови співпраці'
+    } 
+
+    return render(request, 'main/cooperation.html', context)

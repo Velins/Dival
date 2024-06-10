@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 class UserLoginForm(AuthenticationForm):
     class Meta:
             model = User
-            fields = ('username','password')
+            fields = ('email','password')
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:

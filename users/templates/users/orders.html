@@ -35,9 +35,9 @@
             <li>
               <a href="{% url 'user:orders' %}"><img src="{% static 'assets/img/cart-arrow.svg' %}" />Мої замовлення</a>
             </li>
-            <li>
+            {% comment %} <li>
               <a href=""><img src="{% static 'assets/img/heart.svg' %}" />Список бажаного</a>
-            </li>
+            </li> {% endcomment %}
             <li>
               <a href="{% url 'user:logout' %}"><img src="{% static 'assets/img/exit.svg' %}" />Вийти</a>
             </li>
@@ -52,12 +52,12 @@
               {% for order in orders %}
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="heading{{ order.id }}">
-                    <button class="accordion-button {% if order != orders[0] %}{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                    <button class="accordion-button {% if order != orders.0 %}{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
                       Замовлення <strong class="mx-2">{{ order.id }}</strong>
                       <div class="d-none d-lg-block">- {{ order.created_timestamp }}</div>| Статус:<strong class="mx-2">{{ order.status }}</strong>
                     </button>
                   </h2>
-                  <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders[0] %}{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
+                  <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <div class="table-responsive">
                         <table class="table table-hover">
@@ -77,9 +77,8 @@
                                 </td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.price }}</td>
-                                <td>{{ item.order.delivery_address }}</td>
+                                <td>{% if item.order.delivery_address %}{{item.order.delivery_address}}{% else %}-{% endif %}</td>
                               </tr>
-                            {% endfor %}
                           </tbody>
                         </table>
                       </div>

@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-lg-3 col-sm-5">
         <div class="sidebar-profile">
-          <h1><span>{{ form.first_name.value }} {{ form.last_name.value }}</span></h1>
+          <h1><span>{{ user.first_name.value }} {{ form.last_name.value }}</span></h1>
           <ul>
             <li>
               <a href="{% url 'user:profile' %}"><img src="{% static 'assets/img/user.svg' %}" />Персональні дані</a>
@@ -36,8 +36,8 @@
               <a href="{% url 'user:orders' %}"><img src="{% static 'assets/img/cart-arrow.svg' %}" />Мої замовлення</a>
             </li>
             {% comment %} <li>
-              <a href=""><img src="{% static 'assets/img/heart.svg' %}" />Список бажаного</a>
-            </li> {% endcomment %}
+              <a href="{% url 'user:wishlist'%}"><img src="{% static 'assets/img/heart.svg' %}" />Список бажаного</a>
+            </li>  {% endcomment %}
             <li>
               <a href="{% url 'user:logout' %}"><img src="{% static 'assets/img/exit.svg' %}" />Вийти</a>
             </li>

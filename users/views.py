@@ -66,16 +66,10 @@ def registration (request):
                 return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = UserRegistrationForm()
-
-    if request.path == 'user/login/':
-        is_login_page = True
-    else:
-        is_login_page = False
     
     context = {
         'title' : 'Реєстрація',
-        'form' : form,
-        'is_login_page' : is_login_page
+        'form' : form
     }
     return render(request,'users/registration.html', context)
 
