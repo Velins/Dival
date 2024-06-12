@@ -10,7 +10,7 @@ from orders.models import Order, OrderItem
 from carts.models import Cart
 
 
-from liqpay.liqpay import LiqPay
+from liqpay3 import LiqPay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
