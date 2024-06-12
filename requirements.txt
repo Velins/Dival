@@ -15,7 +15,7 @@ gunicorn==22.0.0
 idna==3.7
 ipython==8.23.0
 jedi==0.19.1
-liqpay==1.1.0
+liqpay==1.1
 liqpay-python==1.0
 liqpay3==0.1
 matplotlib-inline==0.1.7
