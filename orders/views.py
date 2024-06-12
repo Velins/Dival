@@ -10,7 +10,7 @@ from orders.models import Order, OrderItem
 from carts.models import Cart
 
 
-from liqpay3 import LiqPay
+from liqpay3 import liqpay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -92,7 +92,7 @@ def liqpay_checkout(request, order_id):
     order_items = OrderItem.objects.filter(order=order_id)
     total_price = order_items.total_price()  # Викликаємо метод з QuerySet
 
-    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    liqpay = liqpay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
 
     params = {
         'action': 'pay',
@@ -121,7 +121,7 @@ def liqpay_callback(request):
     data = request.POST.get('data')
     signature = request.POST.get('signature')
 
-    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    liqpay = liqpay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
     is_valid = liqpay.verify_signature(signature, data)
 
     if is_valid:

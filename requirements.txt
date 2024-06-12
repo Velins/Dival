@@ -17,7 +17,7 @@ ipython==8.23.0
 jedi==0.19.1
 liqpay==1.0.1
 liqpay-python==1.0
-liqpay3==1.1
+liqpay3==0.1
 matplotlib-inline==0.1.7
 packaging==24.1
 parso==0.8.4
