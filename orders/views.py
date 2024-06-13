@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+
 from django.db import transaction
 from django.forms import ValidationError
 from django.contrib import messages
@@ -8,7 +9,7 @@ from orders.forms import CreateOrderForm
 from orders.models import Order, OrderItem
 from carts.models import Cart
 
-from liqpay3.liqpay import LiqPay  # Переконайтеся, що імпортуєте саме клас LiqPay
+from liqpay3.liqpay import LiqPay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -80,8 +81,9 @@ def create_order(request):
 
 @login_required
 def liqpay_checkout(request, order_id):
+
     order_items = OrderItem.objects.filter(order=order_id)
-    total_price = sum(item.price * item.quantity for item in order_items)
+    total_price = sum(item.price * item.quantity for item in order_items)  # Підрахунок загальної суми замовлення
 
     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
 
@@ -92,18 +94,16 @@ def liqpay_checkout(request, order_id):
         'description': f'Order #{order_id}',
         'order_id': str(order_id),
         'version': '3',
-        'sandbox': 1,
+        'sandbox': 1,  # Увімкнути тестовий режим
         'server_url': request.build_absolute_uri('/liqpay-callback/'),
         'result_url': request.build_absolute_uri('/user/orders/'),
     }
 
-    data = liqpay.cnb_data(params).decode('utf-8')
-    signature = liqpay.cnb_signature(params).decode('utf-8')
+    form_html = liqpay.cnb_form(params)  # Генерація HTML-форми для оплати
 
     context = {
         'title': 'Оплата',
-        'data': data,
-        'signature': signature
+        'form_html': form_html
     }
     return render(request, 'orders/checkout.html', context)
 
@@ -123,5 +123,5 @@ def liqpay_callback(request):
             order.is_paid = True
             order.save()
             return HttpResponse(status=200)
-
+        
     return HttpResponse(status=400)
