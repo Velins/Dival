@@ -1,23 +1,22 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <nav class="breadcrums">
-          <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a>Кошик</a></li>
-            <li><a>Платіж</a></li>
-          </ul>
-        </nav>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrums">
+        <ul>
+          <li><a href="index.html">Головна</a></li>
+          <li><a>Кошик</a></li>
+          <li><a>Платіж</a></li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <div class="container-fluid mb-3">
-    <div class="row">
-
-      <div class="col-12">
+</div>
+<div class="container-fluid mb-3">
+  <div class="row">
+    <h1>{{ title }}</h1>
+    <div>{{ form_html|safe }}</div>
+    <!-- <div class="col-12">
         <h1 class="section-title-checkout">Платіжні системи :</h1>
         <form class="liqpay_checkout d-flex justify-content-center" method="POST"
           action="https://www.liqpay.ua/api/3/checkout">
@@ -25,6 +24,8 @@
           <input type="hidden" name="signature" value="{{signature}}" />
           <button type="submit" class="btn btn-success"><img src="{% static "assets/img/LiqPay-Logo.png"%}" alt=""></button>
         </form>
-      </div>
+      </div> -->
 
-{% endblock %}
+    {% endblock %}
+  </div>
+</div>
