@@ -1,7 +1,7 @@
 from django.db import models
 
 class CarouselImage(models.Model):
-    image = models.ImageField(upload_to='carousel/', verbose_name="Зображення")
+    image = models.ImageField(upload_to='carousel', verbose_name="Зображення")
     order = models.PositiveIntegerField(default=0, verbose_name="Номер в черзі ")
 
     class Meta:
