@@ -10,7 +10,7 @@ from orders.models import Order, OrderItem
 from carts.models import Cart
 
 
-from liqpay3 import LiqPay
+from liqpay3 import liqpay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -92,7 +92,7 @@ def liqpay_checkout(request, order_id):
     order_items = OrderItem.objects.filter(order=order_id)
     total_price = order_items.total_price()  # Викликаємо метод з QuerySet
 
-    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    liq = liqpay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
 
     params = {
         'action': 'pay',
@@ -106,8 +106,8 @@ def liqpay_checkout(request, order_id):
         'result_url': request.build_absolute_uri('/user/orders/'),
     }
     
-    data = liqpay.cnb_data(params).decode('utf-8')  # Перетворюємо байтові дані у рядок
-    signature = liqpay.cnb_signature(params).decode('utf-8')  # Перетворюємо байтовий підпис у рядок
+    data = liq.cnb_data(params).decode('utf-8')  # Перетворюємо байтові дані у рядок
+    signature = liq.cnb_signature(params).decode('utf-8')  # Перетворюємо байтовий підпис у рядок
 
     context = {
         'title': 'Оплата',
@@ -121,11 +121,11 @@ def liqpay_callback(request):
     data = request.POST.get('data')
     signature = request.POST.get('signature')
 
-    liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-    is_valid = liqpay.verify_signature(signature, data)
+    liq = liqpay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+    is_valid = liq.verify_signature(signature, data)
 
     if is_valid:
-        response_data = json.loads(liqpay.decode_data_from_str(data))
+        response_data = json.loads(liq.decode_data_from_str(data))
         if response_data['status'] == 'success':
             order_id = response_data['order_id']
             order = Order.objects.get(id=order_id)
