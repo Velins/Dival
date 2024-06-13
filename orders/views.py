@@ -92,7 +92,7 @@ def liqpay_checkout(request, order_id):
         'action': 'pay',
         'amount': str(total_price),
         'currency': 'UAH',
-        'description': f'Order #{order_id}',
+        'description': f'Замовлення #{order_id}',
         'order_id': str(order_id),
         'version': '3',
         'sandbox': 1,  # Увімкнути тестовий режим
@@ -105,7 +105,6 @@ def liqpay_checkout(request, order_id):
     context = {
         'title': 'Оплата',
         'form_html': form_html,
-        'action': 'https://www.liqpay.ua/api/3/checkout/',
         'data': base64.b64encode(json.dumps(params).encode('utf8')).decode('utf8'),
         'signature': liqpay.cnb_signature(params).decode('utf8'),
     }
