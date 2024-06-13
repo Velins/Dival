@@ -14,17 +14,14 @@
 </div>
 <div class="container-fluid mb-3">
   <div class="row">
-    <h1>{{ title }}</h1>
-    <div>{{ form_html|safe }}</div>
-    <!-- <div class="col-12">
-        <h1 class="section-title-checkout">Платіжні системи :</h1>
-        <form class="liqpay_checkout d-flex justify-content-center" method="POST"
-          action="https://www.liqpay.ua/api/3/checkout">
-          <input type="hidden" name="data" value="{{ data }}" />
-          <input type="hidden" name="signature" value="{{signature}}" />
-          <button type="submit" class="btn btn-success"><img src="{% static "assets/img/LiqPay-Logo.png"%}" alt=""></button>
-        </form>
-      </div> -->
+    <div class="col-12">
+      <h1 class="section-title-checkout">Платіжні системи :</h1>
+      <form class="liqpay_checkout d-flex justify-content-center" method="POST" action="https://www.liqpay.ua/api/3/checkout">
+        <input type="hidden" name="data" value="{{data}}" />
+        <input type="hidden" name="signature" value="{{signature}}" />
+        <button type="submit" class="btn btn-success"><img src="{% static "assets/img/LiqPay-Logo.png"%}" alt=""></button>
+      </form>
+    </div>
 
     {% endblock %}
   </div>
