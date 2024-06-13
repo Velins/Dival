@@ -16,11 +16,7 @@
   <div class="row">
     <div class="col-12">
       <h1 class="section-title-checkout">Платіжні системи :</h1>
-      <form class="liqpay_checkout d-flex justify-content-center" method="POST" action="{{ action }}" accept-charset="utf-8">
-        <input type="hidden" name="data" value="{{ data }}" />
-        <input type="hidden" name="signature" value="{{ signature }}" />
-        <button type="submit" class="btn btn-success"><img src="{% static "assets/img/LiqPay-Logo.png"%}" alt=""></button>
-      </form>
+      <div class="liqpay_checkout d-flex justify-content-center">{{ form_html|safe }}</div>
     </div>
 
     {% endblock %}
