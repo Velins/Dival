@@ -112,6 +112,9 @@ def liqpay_callback(request):
     data = request.POST.get('data')
     signature = request.POST.get('signature')
 
+    if not data or not signature:
+        return HttpResponse('Missing data or signature', status=400)
+
     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
     is_valid = liqpay.verify_signature(signature, data)
 
@@ -122,6 +125,7 @@ def liqpay_callback(request):
             order = Order.objects.get(id=order_id)
             order.is_paid = True
             order.save()
-            return HttpResponse(status=200)
+            return HttpResponse('Payment successful', status=200)
         
-    return HttpResponse(status=400)
+    return HttpResponse('Payment verification failed', status=400)
+
