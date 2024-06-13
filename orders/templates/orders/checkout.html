@@ -19,7 +19,7 @@
       <form class="liqpay_checkout d-flex justify-content-center" method="POST" action="{{ action }}" accept-charset="utf-8">
         <input type="hidden" name="data" value="{{ data }}" />
         <input type="hidden" name="signature" value="{{ signature }}" />
-        <input type="image" src="//static.liqpay.com/buttons/p1{{ language }}.radius.png" name="btn_text" />
+        <button type="submit" class="btn btn-success"><img src="{% static "assets/img/LiqPay-Logo.png"%}" alt=""></button>
       </form>
     </div>
 
