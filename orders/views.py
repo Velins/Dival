@@ -84,7 +84,7 @@ def create_order(request):
 def liqpay_checkout(request, order_id):
 
     order_items = OrderItem.objects.filter(order=order_id)
-    total_price = sum(item.price * item.quantity for item in order_items)  # Підрахунок загальної суми замовлення
+    total_price = sum(item.price * item.quantity for item in order_items)  # Calculate total price manually
 
     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
 
@@ -99,12 +99,15 @@ def liqpay_checkout(request, order_id):
         'server_url': request.build_absolute_uri('/liqpay-callback/'),
         'result_url': request.build_absolute_uri('/user/orders/'),
     }
-
-    form_html = liqpay.cnb_form(params)  # Генерація HTML-форми для оплати
+    
+    form_html = liqpay.cnb_form(params)
 
     context = {
         'title': 'Оплата',
-        'form_html': form_html
+        'form_html': form_html,
+        'action': 'https://www.liqpay.ua/api/3/checkout/',
+        'data': base64.b64encode(json.dumps(params).encode('utf8')).decode('utf8'),
+        'signature': liqpay.cnb_signature(params).decode('utf8'),
     }
     return render(request, 'orders/checkout.html', context)
 
@@ -112,12 +115,6 @@ def liqpay_checkout(request, order_id):
 def liqpay_callback(request):
     data = request.POST.get('data')
     signature = request.POST.get('signature')
-
-    print(f"Received data: {data}")
-    print(f"Received signature: {signature}")
-
-    if not data or not signature:
-        return HttpResponse('Missing data or signature', status=400)
 
     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
     is_valid = liqpay.verify_signature(signature, data)
@@ -129,7 +126,7 @@ def liqpay_callback(request):
             order = Order.objects.get(id=order_id)
             order.is_paid = True
             order.save()
-            return HttpResponse('Payment successful', status=200)
-        
-    return HttpResponse('Payment verification failed', status=400)
+            return HttpResponse(status=200)
+
+    return HttpResponse(status=400)
 
