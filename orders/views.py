@@ -1,3 +1,4 @@
+import base64
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -107,25 +108,34 @@ def liqpay_checkout(request, order_id):
     }
     return render(request, 'orders/checkout.html', context)
 
-@csrf_exempt
-def liqpay_callback(request):
-    data = request.POST.get('data')
-    signature = request.POST.get('signature')
-
-    if not data or not signature:
-        return HttpResponse('Missing data or signature', status=400)
+@login_required
+def liqpay_checkout(request, order_id):
+    order_items = OrderItem.objects.filter(order=order_id)
+    total_price = sum(item.price * item.quantity for item in order_items)  # Calculate total price manually
 
     liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-    is_valid = liqpay.verify_signature(signature, data)
 
-    if is_valid:
-        response_data = json.loads(liqpay.decode_data_from_str(data))
-        if response_data['status'] == 'success':
-            order_id = response_data['order_id']
-            order = Order.objects.get(id=order_id)
-            order.is_paid = True
-            order.save()
-            return HttpResponse('Payment successful', status=200)
-        
-    return HttpResponse('Payment verification failed', status=400)
+    params = {
+        'action': 'pay',
+        'amount': str(total_price),
+        'currency': 'UAH',
+        'description': f'Order #{order_id}',
+        'order_id': str(order_id),
+        'version': '3',
+        'sandbox': 1,  # Увімкнути тестовий режим
+        'server_url': request.build_absolute_uri('/liqpay-callback/'),
+        'result_url': request.build_absolute_uri('/user/orders/'),
+    }
+    
+    form_html = liqpay.cnb_form(params)
+
+    context = {
+        'title': 'Оплата',
+        'form_html': form_html,
+        'action': 'https://www.liqpay.ua/api/3/checkout/',
+        'data': base64.b64encode(json.dumps(params).encode('utf8')).decode('utf8'),
+        'signature': liqpay.cnb_signature(params).decode('utf8'),
+    }
+    return render(request, 'orders/checkout.html', context)
+
 
